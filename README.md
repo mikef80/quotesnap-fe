@@ -1,3 +1,3 @@
 # quotesnap-fe
 
-/ to be written /
+to be written
