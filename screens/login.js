@@ -1,13 +1,15 @@
 import { useNavigation } from "@react-navigation/native";
 import { Button, TextInput, View, Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import Singup from "./signup";
 
 export default function Login() {
   const navigation = useNavigation();
 
-  const handlePress = () => {
+  const handlePressSignUp = () => {
     navigation.navigate("Signup");
+  };
+  const handlePressLogin = () => {
+    navigation.navigate("Homepage");
   };
 
   return (
@@ -18,12 +20,14 @@ export default function Login() {
         <View style={styles.login_input}>
           <View style={styles.login_button}>
             <TextInput style={styles.textUsername} placeholder="username" />
-            <Button title="Login" />
+            <TouchableOpacity onPress={handlePressLogin}>
+              <Button title="Login" />
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.signup}>
           <Text> Not registered?</Text>
-          <TouchableOpacity onPress={handlePress}>
+          <TouchableOpacity onPress={handlePressSignUp}>
             <Text>Sign up here</Text>
           </TouchableOpacity>
         </View>
@@ -45,14 +49,14 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   login_input: {
-    borderBlockColor: "#000000",
+    borderColor: "#000000",
     borderWidth: 2,
     borderRadius: 10,
     margin: 50,
     padding: 20,
   },
   textUsername: {
-    borderBlockColor: "grey",
+    borderColor: "grey",
     borderWidth: 0.5,
     width: 150,
   },

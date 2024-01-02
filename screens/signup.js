@@ -25,14 +25,14 @@ const styles = StyleSheet.create({
   },
 
   signup_input: {
-    borderBlockColor: "#000000",
+    borderColor: "#000000",
     borderWidth: 2,
     borderRadius: 10,
     margin: 50,
     padding: 20,
   },
   textbox: {
-    borderBlockColor: "grey",
+    borderColor: "grey",
     borderWidth: 0.5,
     width: "auto",
     margin: 5,
