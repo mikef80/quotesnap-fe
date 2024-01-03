@@ -38,25 +38,24 @@ export default function Categories() {
           save="value"
         />
       </View>
-      <SafeAreaView>
-        <FlatList
-          data={categories}
-          renderItem={({ item }) => {
-            return (
-              <View style={styles.items}>
-                <TouchableOpacity>
-                  <Text style={styles.listText}>
-                    {item.categoryName}: {item.categoryDescription}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            );
-          }}
-          keyExtractor={(item) => {
-            return item.id;
-          }}
-        />
-      </SafeAreaView>
+
+      <FlatList
+        data={categories}
+        renderItem={({ item }) => {
+          return (
+            <View style={styles.items}>
+              <TouchableOpacity>
+                <Text style={styles.listText}>
+                  {item.categoryName}: {item.categoryDescription}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          );
+        }}
+        keyExtractor={(item) => {
+          return item.id;
+        }}
+      />
     </View>
   );
 }

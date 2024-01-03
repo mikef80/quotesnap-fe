@@ -24,6 +24,10 @@ export default function Login() {
     navigation.navigate("Scan");
   };
 
+  const handlePressNavigation = () => {
+    navigation.navigate("Navigation");
+  };
+
   return (
     <View>
       <View style={styles.login_container}>
@@ -57,6 +61,12 @@ export default function Login() {
       <View style={styles.signup}>
         <TouchableOpacity onPress={handlePressScanScreen}>
           <Text>Go to Scan Screen</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.signup}>
+        <TouchableOpacity onPress={handlePressNavigation}>
+          <Text>Go to Navigation</Text>
         </TouchableOpacity>
       </View>
     </View>
