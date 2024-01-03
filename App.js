@@ -44,7 +44,7 @@ export default function App() {
               ),
             }}
           />
-          <Tab.Screen
+          {/* <Tab.Screen
             name="QuoteItem"
             component={QuoteItem}
             options={{
@@ -56,14 +56,14 @@ export default function App() {
                 />
               ),
             }}
-          />
+          /> */}
           <Tab.Screen
             name="Categories"
             component={Categories}
             options={{
               tabBarIcon: ({ color, size }) => (
                 <MaterialCommunityIcons
-                  name="text-short"
+                  name="book-open-outline"
                   color={color}
                   size={size}
                 />
