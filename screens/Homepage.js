@@ -220,10 +220,6 @@ export default function Homepage() {
           return item.id;
         }}
       />
-
-      <View>
-        <Navigation style={styles.naviagtionContainer} />
-      </View>
     </View>
   );
 }

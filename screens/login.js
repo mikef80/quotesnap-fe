@@ -48,27 +48,6 @@ export default function Login() {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.signup}>
-        <TouchableOpacity onPress={handlePressCategory}>
-          <Text>Go to Category Page</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.signup}>
-        <TouchableOpacity onPress={handlePressProfile}>
-          <Text>Go to Profile Page</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.signup}>
-        <TouchableOpacity onPress={handlePressScanScreen}>
-          <Text>Go to Scan Screen</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.signup}>
-        <TouchableOpacity onPress={handlePressNavigation}>
-          <Text>Go to Navigation</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }

@@ -5,10 +5,6 @@ export default function Scan() {
   return (
     <View>
       <Text>Scan Page</Text>
-      <View style={styles.NavigationContainer}>
-        <Text>Scan Page</Text>
-        <Navigation />
-      </View>
     </View>
   );
 }
