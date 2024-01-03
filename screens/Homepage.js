@@ -9,9 +9,16 @@ import {
 } from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useState, useEffect } from "react";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Homepage() {
   const [selected, setSelected] = useState("");
+  const [props, setProps] = useState({});
+
+  const navigation = useNavigation();
+  const updateProps = (newProps) => {
+    setProps(newProps);
+  };
 
   const data = [
     { key: "1", value: "Personal" },
@@ -20,14 +27,161 @@ export default function Homepage() {
   ];
 
   const quotes = [
-    { id: 1, quote: "test1" },
-    { id: 2, quote: "test1" },
-    { id: 3, quote: "test1" },
+    {
+      quoteId: 1,
+      quoteText: "a random quote",
+      quoteAuthor: "a quote author",
+      quoteOrigin: "fiction book",
+      quoteLocation: "[10,10]",
+      quoteImage: "apicturelink.jpg",
+      quoteIsPrivate: Math.random() > 0.5 ? true : false,
+      quoteCategory: "Book",
+      quoteUser: "Hello",
+    },
+    {
+      quoteId: 2,
+      quoteText: "a random quotequotequotequote",
+      quoteAuthor: "a quote author",
+      quoteOrigin: "fiction book",
+      quoteLocation: "[10,10]",
+      quoteImage: "apicturelink.jpg",
+      quoteIsPrivate: Math.random() > 0.5 ? true : false,
+      quoteCategory: "Book",
+      quoteUser: "Hello",
+    },
+    {
+      quoteId: 3,
+      quoteText: "a quotequotequotequote  sdadas random quote",
+      quoteAuthor: "a quote author",
+      quoteOrigin: "fiction book",
+      quoteLocation: "[10,10]",
+      quoteImage: "apicturelink.jpg",
+      quoteIsPrivate: Math.random() > 0.5 ? true : false,
+      quoteCategory: "Book",
+      quoteUser: "Hello",
+    },
+    {
+      quoteId: 4,
+      quoteText:
+        "Amet irure anim eu cillum dolore ullamco Lorem quis nisi aliquip proident consectetur cillum officia.",
+      quoteAuthor: "a quote author",
+      quoteOrigin: "fiction book",
+      quoteLocation: "[10,10]",
+      quoteImage: "apicturelink.jpg",
+      quoteIsPrivate: Math.random() > 0.5 ? true : false,
+      quoteCategory: "Billboard",
+      quoteUser: "HeAworldllo",
+    },
+    {
+      quoteId: 5,
+      quoteText: "Lorem ex do ad esse fugiat do.",
+      quoteAuthor: "a quote author",
+      quoteOrigin: "fiction book",
+      quoteLocation: "[10,10]",
+      quoteImage: "apicturelink.jpg",
+      quoteIsPrivate: Math.random() > 0.5 ? true : false,
+      quoteCategory: "Book",
+      quoteUser: "HeAworldllo",
+    },
+    {
+      quoteId: 6,
+      quoteText: "Ullamco deserunt cillum mollit commodo.",
+      quoteAuthor: "a quote author",
+      quoteOrigin: "fiction book",
+      quoteLocation: "[10,10]",
+      quoteImage: "apicturelink.jpg",
+      quoteIsPrivate: Math.random() > 0.5 ? true : false,
+      quoteCategory: "Book",
+      quoteUser: "Aworld",
+    },
+    {
+      quoteId: 7,
+      quoteText:
+        "Laborum eu esse ea laboris sit exercitation cupidatat velit reprehenderit et deserunt ullamco ipsum dolor.",
+      quoteAuthor: "a quote author",
+      quoteOrigin: "fiction book",
+      quoteLocation: "[10,10]",
+      quoteImage: "apicturelink.jpg",
+      quoteIsPrivate: Math.random() > 0.5 ? true : false,
+      quoteCategory: "Book",
+      quoteUser: "Aworld",
+    },
+    {
+      quoteId: 8,
+      quoteText:
+        "Consectetur eu nisi officia laboris do id dolore officia non consectetur.",
+      quoteAuthor: "a quote author",
+      quoteOrigin: "fiction book",
+      quoteLocation: "[10,10]",
+      quoteImage: "apicturelink.jpg",
+      quoteIsPrivate: Math.random() > 0.5 ? true : false,
+      quoteCategory: "Speech",
+      quoteUser: "ASDvv",
+    },
+    {
+      quoteId: 9,
+      quoteText:
+        "Ut aute quis aliquip fugiat Lorem excepteur esse ex sint minim.",
+      quoteAuthor: "a quote author",
+      quoteOrigin: "fiction book",
+      quoteLocation: "[10,10]",
+      quoteImage: "apicturelink.jpg",
+      quoteIsPrivate: Math.random() > 0.5 ? true : false,
+      quoteCategory: "Speech",
+      quoteUser: "DSADSA",
+    },
+    {
+      quoteId: 10,
+      quoteText: "Amet labore laborum aliqua id do et.",
+      quoteAuthor: "a quote author",
+      quoteOrigin: "fiction book",
+      quoteLocation: "[10,10]",
+      quoteImage: "apicturelink.jpg",
+      quoteIsPrivate: Math.random() > 0.5 ? true : false,
+      quoteCategory: "Book",
+      quoteUser: "ASKJHD",
+    },
+    {
+      quoteId: 11,
+      quoteText:
+        "Cillum enim laborum sint nostrud enim labore duis labore non.",
+      quoteAuthor: "a quote author",
+      quoteOrigin: "fiction book",
+      quoteLocation: "[10,10]",
+      quoteImage: "apicturelink.jpg",
+      quoteIsPrivate: Math.random() > 0.5 ? true : false,
+      quoteCategory: "Book",
+      quoteUser: "ASKJHD",
+    },
   ];
+
+  const handleQuoteItem = (
+    quoteId,
+    quoteText,
+    quoteAuthor,
+    quoteOrigin,
+    quoteLocation,
+    quoteImage,
+    quoteIsPrivate,
+    quoteCategory,
+    quoteUser
+  ) => {
+    navigation.navigate("QuoteItem", {
+      id: quoteId,
+      text: quoteText,
+      author: quoteAuthor,
+      origin: quoteOrigin,
+      location: quoteLocation,
+      image: quoteImage,
+      isPrivate: quoteIsPrivate,
+      category: quoteCategory,
+      user: quoteUser,
+    });
+  };
 
   return (
     <View style={styles.homepageContainer}>
-      <TextInput placeholder="Search quotes" />
+      <TextInput style={styles.searchQuotes} placeholder="Search quotes.." />
 
       <View style={styles.selectList}>
         <SelectList
@@ -43,7 +197,22 @@ export default function Homepage() {
           renderItem={({ item }) => {
             return (
               <View style={styles.items}>
-                <Text style={styles.listText}>{item.quote}</Text>
+                <TouchableOpacity
+                  onPress={handleQuoteItem.bind(
+                    this,
+                    item.quoteId,
+                    item.quoteText,
+                    item.quoteAuthor,
+                    item.quoteOrigin,
+                    item.quoteLocation,
+                    item.quoteImage,
+                    item.quoteIsPrivatesPrivate,
+                    item.quoteCategory,
+                    item.quoteUser
+                  )}
+                >
+                  <Text style={styles.listText}>{item.quoteText}</Text>
+                </TouchableOpacity>
               </View>
             );
           }}
@@ -58,11 +227,21 @@ export default function Homepage() {
 
 const styles = StyleSheet.create({
   homepageContainer: { padding: 40 },
+  searchQuotes: {
+    marginBottom: 20,
+    padding: 5,
+    borderColor: "black",
+    borderWidth: 1,
+  },
   items: {
-    margin: 5,
+    margin: 15,
   },
   listText: {
     fontSize: 15,
+    borderColor: "black",
+    borderWidth: 2,
+    borderRadius: 10,
+    padding: 10,
   },
   selectList: {
     marginBottom: 20,

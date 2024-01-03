@@ -12,6 +12,18 @@ export default function Login() {
     navigation.navigate("Homepage");
   };
 
+  const handlePressCategory = () => {
+    navigation.navigate("Categories");
+  };
+
+  const handlePressProfile = () => {
+    navigation.navigate("Profile");
+  };
+
+  const handlePressScanScreen = () => {
+    navigation.navigate("Scan");
+  };
+
   return (
     <View>
       <View style={styles.login_container}>
@@ -31,6 +43,21 @@ export default function Login() {
             <Text>Sign up here</Text>
           </TouchableOpacity>
         </View>
+      </View>
+      <View style={styles.signup}>
+        <TouchableOpacity onPress={handlePressCategory}>
+          <Text>Go to Category Page</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.signup}>
+        <TouchableOpacity onPress={handlePressProfile}>
+          <Text>Go to Profile Page</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.signup}>
+        <TouchableOpacity onPress={handlePressScanScreen}>
+          <Text>Go to Scan Screen</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
