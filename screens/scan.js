@@ -58,19 +58,7 @@ export default function Scan() {
       // setText(JSON.stringify(_.join(" ").replaceAll("\n", " ")));
     }
   };
-
-  useEffect(() => {
-    if (text) {
-      console.log(text, "<-- text elements");
-    }
-  }, [text]);
-
-  useEffect(() => {
-    if (image) {
-      console.log(image, "<-- image");
-    }
-  }, [image]);
-
+  
   return (
     <View style={styles.Main}>
       <View>
