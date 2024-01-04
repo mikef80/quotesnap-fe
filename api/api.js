@@ -11,3 +11,9 @@ export const getQoutesByUsername = (username) => {
       return quotes;
     });
 };
+
+export const getCategories = () => {
+  return baseUrl.get("/categories").then(({ data: { categories } }) => {
+    return categories;
+  });
+};

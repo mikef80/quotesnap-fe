@@ -2,37 +2,50 @@ import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SelectList } from "react-native-dropdown-select-list";
+import { useEffect, useState } from "react";
+import { getCategories } from "../api/api";
 
 export default function Categories() {
-  const categories = [
-    {
-      categoryId: 1,
-      categoryName: "Book",
-      categoryDescription: "A collection of pages that can tell a story",
-    },
-    {
-      categoryId: 2,
-      categoryName: "Speech",
-      categoryDescription: "A vocalisation of a story",
-    },
-    {
-      categoryId: 3,
-      categoryName: "Billboard",
-      categoryDescription: "A sign that can be seen outside, usually used for marketing purposes",
-    },
-  ];
+  const [categories, setCategories] = useState("");
 
-  const data = [
-    { key: "1", value: categories[0].categoryName },
-    { key: "2", value: categories[1].categoryName },
-    { key: "3", value: categories[2].categoryName },
-  ];
+  // const categories = [
+  //   {
+  //     categoryId: 1,
+  //     categoryName: "Book",
+  //     categoryDescription: "A collection of pages that can tell a story",
+  //   },
+  //   {
+  //     categoryId: 2,
+  //     categoryName: "Speech",
+  //     categoryDescription: "A vocalisation of a story",
+  //   },
+  //   {
+  //     categoryId: 3,
+  //     categoryName: "Billboard",
+  //     categoryDescription:
+  //       "A sign that can be seen outside, usually used for marketing purposes",
+  //   },
+  // ];
+  useEffect(async () => {
+    const categoriesReceived = await getCategories();
+    setCategories(categoriesReceived);
+  }, []);
+
+  // const data = [
+  //   { key: "1", value: categories[0].categoryName },
+  //   { key: "2", value: categories[1].categoryName },
+  //   { key: "3", value: categories[2].categoryName },
+  // ];
 
   return (
     <View style={styles.categoriesContainer}>
-      <View style={styles.selectList}>
-        <SelectList setSelected={(val) => setSelected(val)} data={data} save="value" />
-      </View>
+      {/* <View style={styles.selectList}>
+        <SelectList
+          setSelected={(val) => setSelected(val)}
+          data={data}
+          save="value"
+        />
+      </View> */}
 
       <FlatList
         data={categories}

@@ -1,5 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, TextInput, StyleSheet, FlatList, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  FlatList,
+  SafeAreaView,
+} from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useState, useEffect } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -33,7 +40,7 @@ export default function Homepage({ route }) {
     quoteIsPrivate,
     quoteCategory,
     quoteUser
-  ) => {;
+  ) => {
     navigation.navigate("QuoteItem", {
       id: quoteId,
       text: quoteText,
@@ -52,7 +59,11 @@ export default function Homepage({ route }) {
       <TextInput style={styles.searchQuotes} placeholder="Search quotes.." />
 
       <View style={styles.selectList}>
-        <SelectList setSelected={(val) => setSelected(val)} data={data} save="value" />
+        <SelectList
+          setSelected={(val) => setSelected(val)}
+          data={data}
+          save="value"
+        />
       </View>
 
       {quotes.length ? (
