@@ -1,32 +1,46 @@
 import { useNavigation } from "@react-navigation/native";
-import { Button, TextInput, View, Text, StyleSheet } from "react-native";
+import { useState } from "react";
+import { Button, TextInput, View, Text, StyleSheet, Alert } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { getQoutesByUsername } from "../api/api";
 
 export default function Login() {
   const navigation = useNavigation();
 
+  const [username, setUsername] = useState("");
+
   const handlePressSignUp = () => {
     navigation.navigate("Signup");
   };
-  const handlePressLogin = () => {
-    navigation.navigate("Homepage");
+
+  const handleTextChange = (username) => {
+    setUsername(username);
   };
 
-  const handlePressCategory = () => {
-    navigation.navigate("Categories");
+  const handlePressLogin = async () => {
+    try {
+      const quotes = (await getQoutesByUsername(username)) || [];
+      navigation.navigate("Homepage", { quotes });
+    } catch (error) {
+      Alert.alert("Error", "User not found.");
+    }
   };
 
-  const handlePressProfile = () => {
-    navigation.navigate("Profile");
-  };
+  // const handlePressCategory = () => {
+  //   navigation.navigate("Categories");
+  // };
 
-  const handlePressScanScreen = () => {
-    navigation.navigate("Scan");
-  };
+  // const handlePressProfile = () => {
+  //   navigation.navigate("Profile");
+  // };
 
-  const handlePressNavigation = () => {
-    navigation.navigate("Navigation");
-  };
+  // const handlePressScanScreen = () => {
+  //   navigation.navigate("Scan");
+  // };
+
+  // const handlePressNavigation = () => {
+  //   navigation.navigate("Navigation");
+  // };
 
   return (
     <View>
@@ -35,7 +49,12 @@ export default function Login() {
         <Text style={styles.dailyQuote}>Quote of the Day</Text>
         <View style={styles.login_input}>
           <View style={styles.login_button}>
-            <TextInput style={styles.textUsername} placeholder="username" />
+            <TextInput
+              value={username}
+              onChangeText={handleTextChange}
+              style={styles.textUsername}
+              placeholder="username"
+            />
             <TouchableOpacity onPress={handlePressLogin}>
               <Button title="Login" />
             </TouchableOpacity>
