@@ -18,11 +18,15 @@ export default function Login() {
   };
 
   const handlePressLogin = async () => {
-    try {
-      const quotes = (await getQoutesByUsername(username)) || [];
-      navigation.navigate("Homepage", { quotes });
-    } catch (error) {
-      Alert.alert("Error", "User not found.");
+    if (!username.length) {
+      Alert.alert("Error", "Please enter a username");
+    } else {
+      try {
+        const quotes = (await getQoutesByUsername(username)) || [];
+        navigation.navigate("Homepage", { quotes });
+      } catch (error) {
+        Alert.alert("Error", "User not found.");
+      }
     }
   };
 

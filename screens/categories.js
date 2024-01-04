@@ -18,8 +18,7 @@ export default function Categories() {
     {
       categoryId: 3,
       categoryName: "Billboard",
-      categoryDescription:
-        "A sign that can be seen outside, usually used for marketing purposes",
+      categoryDescription: "A sign that can be seen outside, usually used for marketing purposes",
     },
   ];
 
@@ -32,11 +31,7 @@ export default function Categories() {
   return (
     <View style={styles.categoriesContainer}>
       <View style={styles.selectList}>
-        <SelectList
-          setSelected={(val) => setSelected(val)}
-          data={data}
-          save="value"
-        />
+        <SelectList setSelected={(val) => setSelected(val)} data={data} save="value" />
       </View>
 
       <FlatList
@@ -45,15 +40,12 @@ export default function Categories() {
           return (
             <View style={styles.items}>
               <TouchableOpacity>
-                <Text style={styles.listText}>
+                <Text style={styles.listText} key={item.categoryId}>
                   {item.categoryName}: {item.categoryDescription}
                 </Text>
               </TouchableOpacity>
             </View>
           );
-        }}
-        keyExtractor={(item) => {
-          return item.id;
         }}
       />
     </View>

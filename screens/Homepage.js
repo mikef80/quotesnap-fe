@@ -1,16 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  FlatList,
-  SafeAreaView,
-} from "react-native";
+import { View, Text, TextInput, StyleSheet, FlatList, SafeAreaView } from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useState, useEffect } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Navigation from "../components/Navigation";
+import QuoteItem from "./quoteItem";
 
 export default function Homepage({ route }) {
   const [selected, setSelected] = useState("");
@@ -39,7 +33,7 @@ export default function Homepage({ route }) {
     quoteIsPrivate,
     quoteCategory,
     quoteUser
-  ) => {
+  ) => {;
     navigation.navigate("QuoteItem", {
       id: quoteId,
       text: quoteText,
@@ -58,11 +52,7 @@ export default function Homepage({ route }) {
       <TextInput style={styles.searchQuotes} placeholder="Search quotes.." />
 
       <View style={styles.selectList}>
-        <SelectList
-          setSelected={(val) => setSelected(val)}
-          data={data}
-          save="value"
-        />
+        <SelectList setSelected={(val) => setSelected(val)} data={data} save="value" />
       </View>
 
       {quotes.length ? (
@@ -74,24 +64,23 @@ export default function Homepage({ route }) {
                 <TouchableOpacity
                   onPress={handleQuoteItem.bind(
                     this,
-                    item.quoteId,
+                    item._id,
                     item.quoteText,
                     item.quoteAuthor,
                     item.quoteOrigin,
                     item.quoteLocation,
                     item.quoteImage,
-                    item.quoteIsPrivatesPrivate,
+                    item.quoteIsPrivate,
                     item.quoteCategory,
                     item.quoteUser
                   )}
                 >
-                  <Text style={styles.listText}>{item.quoteText}</Text>
+                  <Text style={styles.listText} key={item.quoteId}>
+                    {item.quoteText}
+                  </Text>
                 </TouchableOpacity>
               </View>
             );
-          }}
-          keyExtractor={(item) => {
-            return item.id;
           }}
         />
       ) : (

@@ -23,11 +23,7 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer>
         <Tab.Navigator>
-          <Tab.Screen
-            name="Login"
-            component={Login}
-            options={{ tabBarButton: () => null }}
-          />
+          <Tab.Screen name="Login" component={Login} options={{ tabBarButton: () => null }} />
           <Tab.Screen
             name="Signup"
             component={Signup}
@@ -39,34 +35,25 @@ export default function App() {
             name="Homepage"
             component={Homepage}
             options={{
-              tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons name="home" color={color} size={size} />
-              ),
+              tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="home" color={color} size={size} />,
             }}
           />
-          {/* <Tab.Screen
+          <Tab.Screen
             name="QuoteItem"
             component={QuoteItem}
             options={{
-              tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons
-                  name="book-open-outline"
-                  color={color}
-                  size={size}
-                />
-              ),
+              // tabBarIcon: ({ color, size }) => (
+              //   <MaterialCommunityIcons name="book-open-outline" color={color} size={size} />
+              // ),
+              tabBarButton: () => null,
             }}
-          /> */}
+          />
           <Tab.Screen
             name="Categories"
             component={Categories}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons
-                  name="book-open-outline"
-                  color={color}
-                  size={size}
-                />
+                <MaterialCommunityIcons name="book-open-outline" color={color} size={size} />
               ),
             }}
           />
@@ -74,13 +61,7 @@ export default function App() {
             name="Profile"
             component={Profile}
             options={{
-              tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons
-                  name="account"
-                  color={color}
-                  size={size}
-                />
-              ),
+              tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="account" color={color} size={size} />,
             }}
           />
           <Tab.Screen
@@ -88,11 +69,7 @@ export default function App() {
             component={Scan}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons
-                  name="credit-card-scan-outline"
-                  color={color}
-                  size={size}
-                />
+                <MaterialCommunityIcons name="credit-card-scan-outline" color={color} size={size} />
               ),
             }}
           />
