@@ -36,7 +36,7 @@ export default function App() {
             }}
           />
           <Tab.Screen
-            name="Home"
+            name="Homepage"
             component={Homepage}
             options={{
               tabBarIcon: ({ color, size }) => (

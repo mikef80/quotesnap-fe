@@ -36,9 +36,8 @@ export default function Login() {
         <View style={styles.login_input}>
           <View style={styles.login_button}>
             <TextInput style={styles.textUsername} placeholder="username" />
-            <TouchableOpacity onPress={handlePressLogin}>
-              <Button title="Login" />
-            </TouchableOpacity>
+
+            <Button title="Login" onPress={handlePressLogin} />
           </View>
         </View>
         <View style={styles.signup}>
