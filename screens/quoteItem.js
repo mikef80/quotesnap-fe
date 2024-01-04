@@ -1,17 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 
 export default function QuoteItem({ route }) {
-  const {
-    id,
-    text,
-    author,
-    origin,
-    location,
-    image,
-    isPrivate,
-    category,
-    user,
-  } = route.params;
+  const { id, text, author, origin, location, image, isPrivate, category, user } = route.params;
   return (
     <View style={styles.itemContainer}>
       <Text style={styles.items}>Quote Item </Text>
@@ -21,7 +11,7 @@ export default function QuoteItem({ route }) {
       <Text style={styles.items}>Origin: {origin}</Text>
       <Text style={styles.items}>Location: {location}</Text>
       <Text style={styles.items}>Image: {image}</Text>
-      <Text style={styles.items}>Is private: {isPrivate}</Text>
+      <Text style={styles.items}>Is private: {isPrivate.toString()}</Text>
       <Text style={styles.items}>Category: {category}</Text>
       <Text style={styles.items}>User: {user}</Text>
     </View>

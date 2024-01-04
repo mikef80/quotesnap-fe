@@ -11,6 +11,7 @@ import { SelectList } from "react-native-dropdown-select-list";
 import { useState, useEffect } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Navigation from "../components/Navigation";
+import QuoteItem from "./quoteItem";
 
 export default function Homepage({ route }) {
   const [selected, setSelected] = useState("");
@@ -74,24 +75,23 @@ export default function Homepage({ route }) {
                 <TouchableOpacity
                   onPress={handleQuoteItem.bind(
                     this,
-                    item.quoteId,
+                    item._id,
                     item.quoteText,
                     item.quoteAuthor,
                     item.quoteOrigin,
                     item.quoteLocation,
                     item.quoteImage,
-                    item.quoteIsPrivatesPrivate,
+                    item.quoteIsPrivate,
                     item.quoteCategory,
                     item.quoteUser
                   )}
                 >
-                  <Text style={styles.listText}>{item.quoteText}</Text>
+                  <Text style={styles.listText} key={item.quoteId}>
+                    {item.quoteText}
+                  </Text>
                 </TouchableOpacity>
               </View>
             );
-          }}
-          keyExtractor={(item) => {
-            return item.id;
           }}
         />
       ) : (
