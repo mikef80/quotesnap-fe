@@ -8,19 +8,19 @@ import { useUserContext } from "../Contexts/UserContext";
 export default function Login() {
   const navigation = useNavigation();
 
-  const { username, setUsernameValue } = useUserContext()
+  const { user, setUserValue } = useUserContext()
 
   const handlePressSignUp = () => {
     navigation.navigate("Signup")
   };
 
-  const handleTextChange = (newUsername) => {
-    setUsernameValue(newUsername)
+  const handleTextChange = (newUser) => {
+    setUserValue(newUser)
   };
 
   const handlePressLogin = async () => {
     try {
-      const quotes = (await getQoutesByUsername(username)) || [];
+      const quotes = (await getQoutesByUsername(user)) || [];
       navigation.navigate("Homepage", { quotes });
     } catch (error) {
       Alert.alert("Error", "User not found.");
