@@ -13,6 +13,7 @@ import Navigation from "./components/Navigation";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
+import { UserProvider } from "./Contexts/UserContext";
 
 // const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
+    <UserProvider>
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer>
         <Tab.Navigator>
@@ -76,5 +78,6 @@ export default function App() {
         </Tab.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>
+    </UserProvider>
   );
 }

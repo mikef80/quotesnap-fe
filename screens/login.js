@@ -3,30 +3,32 @@ import { useState } from "react";
 import { Button, TextInput, View, Text, StyleSheet, Alert } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { getQoutesByUsername } from "../api/api";
+import { useUserContext } from "../Contexts/UserContext";
 
 export default function Login() {
   const navigation = useNavigation();
 
-  const [username, setUsername] = useState("");
+  const { user, setUserValue } = useUserContext()
 
   const handlePressSignUp = () => {
-    navigation.navigate("Signup");
+    navigation.navigate("Signup")
   };
 
-  const handleTextChange = (username) => {
-    setUsername(username);
+  const handleTextChange = (newUser) => {
+    setUserValue(newUser)
   };
 
   const handlePressLogin = async () => {
-    if (!username.length) {
+    if (!user.length) {
       Alert.alert("Error", "Please enter a username");
     } else {
       try {
-        const quotes = (await getQoutesByUsername(username)) || [];
+        const quotes = (await getQoutesByUsername(user)) || [];
         navigation.navigate("Homepage", { quotes });
       } catch (error) {
         Alert.alert("Error", "User not found.");
       }
+
     }
   };
 
@@ -54,14 +56,12 @@ export default function Login() {
         <View style={styles.login_input}>
           <View style={styles.login_button}>
             <TextInput
-              value={username}
-              onChangeText={handleTextChange}
-              style={styles.textUsername}
-              placeholder="username"
-            />
-            <TouchableOpacity onPress={handlePressLogin}>
-              <Button title="Login" />
-            </TouchableOpacity>
+            style={styles.textUsername}
+            placeholder="username"
+            onChangeText={handleTextChange}
+          />
+
+            <Button title="Login" onPress={handlePressLogin} />
           </View>
         </View>
         <View style={styles.signup}>
