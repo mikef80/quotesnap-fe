@@ -1,5 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, TextInput, StyleSheet, FlatList, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  FlatList,
+  SafeAreaView,
+} from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useState, useEffect } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -15,7 +22,7 @@ export default function Homepage({ route }) {
 
   const { user } = useUserContext();
 
-  // console.log(user);
+  console.log(user.username);
 
   const navigation = useNavigation();
   const updateProps = (newProps) => {
@@ -23,7 +30,6 @@ export default function Homepage({ route }) {
   };
 
   const quotes = route.params?.quotes;
-  console.log(quotes);
 
   const data = [
     { key: "1", value: "Personal" },
@@ -55,7 +61,7 @@ export default function Homepage({ route }) {
     });
   };
 
-  if (!user.length) {
+  if (!user.username) {
     return (
       <View>
         <Login />
@@ -66,12 +72,15 @@ export default function Homepage({ route }) {
   return (
     <View style={styles.homepageContainer}>
       <TextInput style={styles.searchQuotes} placeholder="Search quotes.." />
-
       <View style={styles.selectList}>
-        <SelectList setSelected={(val) => setSelected(val)} data={data} save="value" />
+        <SelectList
+          setSelected={(val) => setSelected(val)}
+          data={data}
+          save="value"
+        />
       </View>
 
-      {quotes.length ? (
+      {quotes?.length ? (
         <FlatList
           data={quotes}
           renderItem={({ item }) => {

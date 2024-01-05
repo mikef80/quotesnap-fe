@@ -1,45 +1,32 @@
 import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, TextInput, View, Text, StyleSheet, Alert } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { getQoutesByUsername } from "../api/api";
+import { getQoutesByUsername, getUserByUsername } from "../api/api";
 import { useUserContext } from "../Contexts/UserContext";
-import Homepage from "./Homepage";
 
 export default function Login() {
   const navigation = useNavigation();
-  const [input, setInput] = useState("");
-  const [quotes, setQuotes] = useState(null);
+
   const { user, setUserValue } = useUserContext();
 
-  useEffect(() => {
-    if (user) {
-      navigation.navigate("Homepage", { quotes });
-    }
-  }, []);
+  const [username, setUsername] = useState("");
 
   const handlePressSignUp = () => {
     navigation.navigate("Signup");
   };
 
   const handleTextChange = (newUser) => {
-    setInput(newUser);
+    setUsername(newUser);
   };
 
   const handlePressLogin = async () => {
-    if (!input.length) {
+    if (!username.length) {
       Alert.alert("Error", "Please enter a username");
     } else {
-      setUserValue(input);
       try {
-        console.log(user);
-        const retrievedQuotes = (await getQoutesByUsername(input)) || [];
-        // console.log(retrievedQuotes);
-        setQuotes(async (currQuotes) => {
-          // console.log(currQuotes);
-          return await retrievedQuotes;
-        });
-        console.log(quotes);
+        const quotes = (await getQoutesByUsername(username)) || [];
+        await setUserValue(await getUserByUsername(username));
         navigation.navigate("Homepage", { quotes });
       } catch (error) {
         Alert.alert("Error", "User not found.");
@@ -63,14 +50,6 @@ export default function Login() {
   //   navigation.navigate("Navigation");
   // };
 
-  if (user) {
-    return (
-      <View>
-        <Homepage />
-      </View>
-    );
-  }
-
   return (
     <View>
       <View style={styles.login_container}>
@@ -78,7 +57,11 @@ export default function Login() {
         <Text style={styles.dailyQuote}>Quote of the Day</Text>
         <View style={styles.login_input}>
           <View style={styles.login_button}>
-            <TextInput style={styles.textUsername} placeholder="username" onChangeText={handleTextChange} />
+            <TextInput
+              style={styles.textUsername}
+              placeholder="username"
+              onChangeText={handleTextChange}
+            />
 
             <Button title="Login" onPress={handlePressLogin} />
           </View>
