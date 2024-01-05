@@ -3,6 +3,7 @@ import Navigation from "../components/Navigation";
 import * as ImagePicker from "expo-image-picker";
 import MlkitOcr from "react-native-mlkit-ocr";
 import { useEffect, useState } from "react";
+import { postNewQuote } from "../api/api";
 
 export default function Scan() {
   const [image, setImage] = useState(null);
@@ -10,24 +11,29 @@ export default function Scan() {
 
   /* const openCamera = async () => {
     const permission = await ImagePicker.requestCameraPermissionsAsync();
-    console.log(permission);
 
     if (!permission.granted) {
       alert("You have denied permission to the camera");
       return;
     }
 
-    const result = await ImagePicker.launchCameraAsync();
-    console.log(result);
+    const result = await ImagePicker.launchCameraAsync({
+      quality: 1,
+      allowsEditing: true,
+    });
 
     const uri = result.assets[0].uri;
 
     setImage(uri);
 
-    const resultText = await MlkitOcr.detectFromUri(uri);
+    const resultFromUri = await MlkitOcr.detectFromUri(uri);
 
-    setText(resultText[0]);
-    console.log(text);
+    if (resultFromUri?.length > 0) {
+      let _ = resultFromUri.map((line) => line.text);
+      _ = JSON.stringify(_.join(" ").replaceAll("\n", " "));
+      _ = _.replaceAll("\\", " ");
+      setText(_);
+    }
   }; */
 
   const pickImage = async () => {
@@ -51,32 +57,70 @@ export default function Scan() {
 
     if (resultFromUri?.length > 0) {
       let _ = resultFromUri.map((line) => line.text);
-      console.log(_, "<-- _");
-      _ = JSON.stringify(_.join(" ").replaceAll("\n", ' '))
-      _ = _.replaceAll("\\", " ")
-      setText(_)
-      // setText(JSON.stringify(_.join(" ").replaceAll("\n", " ")));
+      _ = JSON.stringify(_.join(" ").replaceAll("\n", " "));
+      _ = _.replaceAll("\\", " ");
+      setText(_);
     }
   };
-  
+
+  const saveScan = () => {
+    console.log("saving quote...");
+    const quoteToSave = {
+      quoteText: text,
+      quoteAuthor: "LinkedIn",
+      quoteOrigin: "fiction book",
+      quoteLocation: "[10, 10]",
+      quoteImage: image,
+      quoteIsPrivate: false,
+      quoteCategory: "Billboard",
+      quoteUser: "Hello",
+    };
+    postNewQuote(quoteToSave).then((returnedQuote) => {
+      console.log("Quote save");
+      setText(null);
+      setImage(null);
+    });
+  };
+
   return (
     <View style={styles.Main}>
       <View>
-        {/* <Button title='Scan quote' onPress={openCamera} /> */}
         {text && image && (
           <View>
             <Image source={{ uri: image }} style={styles.Image} />
             <Text style={styles.Text}>{text}</Text>
           </View>
         )}
-        <View style={{ alignSelf: "center" }}>
-          <View style={{ width: "50%" }}>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}>
+          <View>
             <Button
               style={styles.Button}
               title='Pick Image'
               onPress={pickImage}
             />
           </View>
+          {/* <View>
+            <Button
+              style={styles.Button}
+              title='Scan quote'
+              onPress={openCamera}
+            />
+          </View> */}
+          {text && image && (
+            <View>
+              <Button
+                style={styles.Button}
+                title='Save Scan'
+                onPress={saveScan}
+              />
+            </View>
+          )}
         </View>
       </View>
     </View>
@@ -98,9 +142,6 @@ const styles = StyleSheet.create({
     margin: 20,
     borderWidth: 1,
     borderColor: "black",
-  },
-  Button: {
-    backgroundColor: "red",
   },
   Main: {
     flexDirection: "column",

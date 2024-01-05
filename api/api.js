@@ -31,7 +31,7 @@ export const postNewQuote = async (quote) => {
   } = quote;
 
   try {
-    const postedQuote = await baseUrl.post("/quotes", {
+    const response = await baseUrl.post("/quotes", {
       quoteText,
       quoteAuthor,
       quoteOrigin,
@@ -41,8 +41,9 @@ export const postNewQuote = async (quote) => {
       quoteCategory,
       quoteUser,
     });
-    console.log(postedQuote);
-    return postedQuote;
+
+    const { quote } = response.data;
+    return { quote };
   } catch (error) {
     console.log(error);
   }
