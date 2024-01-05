@@ -70,9 +70,11 @@ export default function Scan() {
       quoteCategory: "Billboard",
       quoteUser: "Hello",
     };
-    postNewQuote(quoteToSave).then((returnedQuote) =>
-      console.log(returnedQuote)
-    );
+    postNewQuote(quoteToSave).then((returnedQuote) => {
+      console.log("Quote save");
+      setText(null);
+      setImage(null);
+    });
   };
 
   return (
@@ -85,21 +87,29 @@ export default function Scan() {
             <Text style={styles.Text}>{text}</Text>
           </View>
         )}
-        <View style={{ alignSelf: "center" }}>
-          <View style={{ width: "50%" }}>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}>
+          <View>
             <Button
               style={styles.Button}
               title='Pick Image'
               onPress={pickImage}
             />
           </View>
-          <View>
-            <Button
-              style={styles.Button}
-              title='Save Scan'
-              onPress={saveScan}
-            />
-          </View>
+          {text && image && (
+            <View>
+              <Button
+                style={styles.Button}
+                title='Save Scan'
+                onPress={saveScan}
+              />
+            </View>
+          )}
         </View>
       </View>
     </View>
@@ -121,9 +131,6 @@ const styles = StyleSheet.create({
     margin: 20,
     borderWidth: 1,
     borderColor: "black",
-  },
-  Button: {
-    backgroundColor: "red",
   },
   Main: {
     flexDirection: "column",

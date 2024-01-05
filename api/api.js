@@ -43,7 +43,6 @@ export const postNewQuote = async (quote) => {
     });
 
     const { quote } = response.data;
-    console.log(quote);
     return { quote };
   } catch (error) {
     console.log(error);
