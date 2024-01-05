@@ -27,9 +27,11 @@ export default function Login() {
       try {
         const quotes = (await getQoutesByUsername(username)) || [];
         navigation.navigate("Homepage", { quotes });
-        setUserValue(await getUserByUsername(username));
+        setUserValue(await getUserByUsername(username))
       } catch (error) {
         Alert.alert("Error", "User not found.");
+      } finally {
+        setUsername('')
       }
     }
   };
@@ -61,6 +63,7 @@ export default function Login() {
               style={styles.textUsername}
               placeholder="username"
               onChangeText={handleTextChange}
+              value={username}
             />
 
             <Button title="Login" onPress={handlePressLogin} />

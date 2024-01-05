@@ -7,25 +7,22 @@ import { useNavigation } from "@react-navigation/native";
 export default function Profile() {
 const navigation = useNavigation()
 
-  const { user,setUserValue } = useUserContext();
+  const { user, setUserValue } = useUserContext();
 
   const handlePressLogout =  () => {
-   setUserValue(null).then(() => {
-     navigation.navigate("signup")
-   })
-
-
+    navigation.navigate("Login")
+    setUserValue(null)
   }
 
   return (
     <View>
       <View style={styles.user}>
         <Image style={styles.avatar} source={require("../assets/avatar.png")} />
-        <Text style={styles.username}>{user.username}</Text>
+        <Text style={styles.username}>{user ? user.username : null}</Text>
       </View>
       <Button title="Logout" onPress={handlePressLogout}></Button>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
