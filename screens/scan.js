@@ -3,6 +3,7 @@ import Navigation from "../components/Navigation";
 import * as ImagePicker from "expo-image-picker";
 import MlkitOcr from "react-native-mlkit-ocr";
 import { useEffect, useState } from "react";
+import { postNewQuote } from "../api/api";
 
 export default function Scan() {
   const [image, setImage] = useState(null);
@@ -51,14 +52,29 @@ export default function Scan() {
 
     if (resultFromUri?.length > 0) {
       let _ = resultFromUri.map((line) => line.text);
-      console.log(_, "<-- _");
-      _ = JSON.stringify(_.join(" ").replaceAll("\n", ' '))
-      _ = _.replaceAll("\\", " ")
-      setText(_)
-      // setText(JSON.stringify(_.join(" ").replaceAll("\n", " ")));
+      _ = JSON.stringify(_.join(" ").replaceAll("\n", " "));
+      _ = _.replaceAll("\\", " ");
+      setText(_);
     }
   };
-  
+
+  const saveScan = () => {
+    console.log("saving quote...");
+    const quoteToSave = {
+      quoteText: text,
+      quoteAuthor: "LinkedIn",
+      quoteOrigin: "fiction book",
+      quoteLocation: "[10, 10]",
+      quoteImage: image,
+      quoteIsPrivate: false,
+      quoteCategory: "Billboard",
+      quoteUser: "Hello",
+    };
+    postNewQuote(quoteToSave).then((returnedQuote) =>
+      console.log(returnedQuote)
+    );
+  };
+
   return (
     <View style={styles.Main}>
       <View>
@@ -75,6 +91,13 @@ export default function Scan() {
               style={styles.Button}
               title='Pick Image'
               onPress={pickImage}
+            />
+          </View>
+          <View>
+            <Button
+              style={styles.Button}
+              title='Save Scan'
+              onPress={saveScan}
             />
           </View>
         </View>
