@@ -30,6 +30,8 @@ export default function Login() {
         navigation.navigate("Homepage", { quotes });
       } catch (error) {
         Alert.alert("Error", "User not found.");
+      } finally {
+        setUsername("");
       }
     }
   };
@@ -61,6 +63,7 @@ export default function Login() {
               style={styles.textUsername}
               placeholder="username"
               onChangeText={handleTextChange}
+              value={username}
             />
 
             <Button title="Login" onPress={handlePressLogin} />

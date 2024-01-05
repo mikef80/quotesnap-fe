@@ -22,8 +22,6 @@ export default function Homepage({ route }) {
 
   const { user } = useUserContext();
 
-  console.log(user.username);
-
   const navigation = useNavigation();
   const updateProps = (newProps) => {
     setProps(newProps);
@@ -61,7 +59,7 @@ export default function Homepage({ route }) {
     });
   };
 
-  if (!user.username) {
+  if (!user) {
     return (
       <View>
         <Login />
