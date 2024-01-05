@@ -9,27 +9,32 @@ export default function Scan() {
   const [image, setImage] = useState(null);
   const [text, setText] = useState(null);
 
-  /* const openCamera = async () => {
+  const openCamera = async () => {
     const permission = await ImagePicker.requestCameraPermissionsAsync();
-    console.log(permission);
 
     if (!permission.granted) {
       alert("You have denied permission to the camera");
       return;
     }
 
-    const result = await ImagePicker.launchCameraAsync();
-    console.log(result);
+    const result = await ImagePicker.launchCameraAsync({
+      quality: 1,
+      allowsEditing: true,
+    });
 
     const uri = result.assets[0].uri;
 
     setImage(uri);
 
-    const resultText = await MlkitOcr.detectFromUri(uri);
+    const resultFromUri = await MlkitOcr.detectFromUri(uri);
 
-    setText(resultText[0]);
-    console.log(text);
-  }; */
+    if (resultFromUri?.length > 0) {
+      let _ = resultFromUri.map((line) => line.text);
+      _ = JSON.stringify(_.join(" ").replaceAll("\n", " "));
+      _ = _.replaceAll("\\", " ");
+      setText(_);
+    }
+  };
 
   const pickImage = async () => {
     const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
