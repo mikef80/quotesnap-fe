@@ -85,7 +85,6 @@ export default function Scan() {
   return (
     <View style={styles.Main}>
       <View>
-        {/* <Button title='Scan quote' onPress={openCamera} /> */}
         {text && image && (
           <View>
             <Image source={{ uri: image }} style={styles.Image} />
@@ -104,6 +103,13 @@ export default function Scan() {
               style={styles.Button}
               title='Pick Image'
               onPress={pickImage}
+            />
+          </View>
+          <View>
+            <Button
+              style={styles.Button}
+              title='Scan quote'
+              onPress={openCamera}
             />
           </View>
           {text && image && (
