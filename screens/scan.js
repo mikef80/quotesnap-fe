@@ -1,4 +1,11 @@
-import { Button, StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+} from "react-native";
 import Navigation from "../components/Navigation";
 import * as ImagePicker from "expo-image-picker";
 import MlkitOcr from "react-native-mlkit-ocr";
@@ -9,8 +16,10 @@ export default function Scan() {
   const [image, setImage] = useState(null);
   const [text, setText] = useState(null);
 
-  /* const openCamera = async () => {
-    const permission = await ImagePicker.requestCameraPermissionsAsync();
+  const openCamera = async () => {
+    let permission = await ImagePicker.requestCameraPermissionsAsync();
+
+    permission.granted = true;
 
     if (!permission.granted) {
       alert("You have denied permission to the camera");
@@ -29,12 +38,15 @@ export default function Scan() {
     const resultFromUri = await MlkitOcr.detectFromUri(uri);
 
     if (resultFromUri?.length > 0) {
-      let _ = resultFromUri.map((line) => line.text);
-      _ = JSON.stringify(_.join(" ").replaceAll("\n", " "));
-      _ = _.replaceAll("\\", " ");
-      setText(_);
+      let ocrText = resultFromUri.map((line) => line.text);
+
+      console.log(ocrText);
+
+      ocrText = JSON.stringify(ocrText.join(" "));
+      ocrText = ocrText.replaceAll("\\", " ");
+      setText(ocrText);
     }
-  }; */
+  };
 
   const pickImage = async () => {
     const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -105,13 +117,13 @@ export default function Scan() {
               onPress={pickImage}
             />
           </View>
-          {/* <View>
+          <View>
             <Button
               style={styles.Button}
               title='Scan quote'
               onPress={openCamera}
             />
-          </View> */}
+          </View>
           {text && image && (
             <View>
               <Button
