@@ -27,7 +27,7 @@ export default function Login() {
       try {
         const quotes = (await getQoutesByUsername(username)) || [];
         navigation.navigate("Homepage", { quotes });
-        setNewUserValue(await getUserByUsername(username));
+        setUserValue(await getUserByUsername(username));
       } catch (error) {
         Alert.alert("Error", "User not found.");
       }
