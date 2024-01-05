@@ -12,17 +12,22 @@ import { useState, useEffect } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Navigation from "../components/Navigation";
 import QuoteItem from "./quoteItem";
+import { UserProvider } from "../Contexts/UserContext";
+import { useUserContext } from "../Contexts/UserContext";
+import Login from "./login";
 
 export default function Homepage({ route }) {
   const [selected, setSelected] = useState("");
   const [props, setProps] = useState({});
+
+  const { user } = useUserContext();
 
   const navigation = useNavigation();
   const updateProps = (newProps) => {
     setProps(newProps);
   };
 
-  const quotes = route.params.quotes;
+  const quotes = route.params?.quotes;
 
   const data = [
     { key: "1", value: "Personal" },
@@ -54,10 +59,17 @@ export default function Homepage({ route }) {
     });
   };
 
+  if (!user) {
+    return (
+      <View>
+        <Login />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.homepageContainer}>
       <TextInput style={styles.searchQuotes} placeholder="Search quotes.." />
-
       <View style={styles.selectList}>
         <SelectList
           setSelected={(val) => setSelected(val)}
@@ -66,7 +78,7 @@ export default function Homepage({ route }) {
         />
       </View>
 
-      {quotes.length ? (
+      {quotes?.length ? (
         <FlatList
           data={quotes}
           renderItem={({ item }) => {

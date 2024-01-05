@@ -47,3 +47,9 @@ export const postNewQuote = async (quote) => {
     console.log(error);
   }
 };
+
+export const getUserByUsername = (username) => {
+  return baseUrl.get(`/users/${username}`).then(({ data: { user } }) => {
+    return user;
+  });
+};
