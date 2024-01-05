@@ -9,7 +9,7 @@ export default function Scan() {
   const [image, setImage] = useState(null);
   const [text, setText] = useState(null);
 
-  const openCamera = async () => {
+  /* const openCamera = async () => {
     const permission = await ImagePicker.requestCameraPermissionsAsync();
 
     if (!permission.granted) {
@@ -34,7 +34,7 @@ export default function Scan() {
       _ = _.replaceAll("\\", " ");
       setText(_);
     }
-  };
+  }; */
 
   const pickImage = async () => {
     const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -105,13 +105,13 @@ export default function Scan() {
               onPress={pickImage}
             />
           </View>
-          <View>
+          {/* <View>
             <Button
               style={styles.Button}
               title='Scan quote'
               onPress={openCamera}
             />
-          </View>
+          </View> */}
           {text && image && (
             <View>
               <Button
