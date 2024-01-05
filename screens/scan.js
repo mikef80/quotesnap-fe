@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View, Image } from "react-native";
+import { Button, StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import Navigation from "../components/Navigation";
 import * as ImagePicker from "expo-image-picker";
 import MlkitOcr from "react-native-mlkit-ocr";
@@ -84,7 +84,7 @@ export default function Scan() {
 
   return (
     <View style={styles.Main}>
-      <View>
+      <ScrollView>
         {text && image && (
           <View>
             <Image source={{ uri: image }} style={styles.Image} />
@@ -122,7 +122,7 @@ export default function Scan() {
             </View>
           )}
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
