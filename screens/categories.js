@@ -26,10 +26,14 @@ export default function Categories() {
   //       "A sign that can be seen outside, usually used for marketing purposes",
   //   },
   // ];
-  useEffect(async () => {
+  useEffect(() => {
+    retrieveCategories();
+  }, []);
+
+  const retrieveCategories = async () => {
     const categoriesReceived = await getCategories();
     setCategories(categoriesReceived);
-  }, []);
+  };
 
   // const data = [
   //   { key: "1", value: categories[0].categoryName },
