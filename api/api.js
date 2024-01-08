@@ -48,12 +48,8 @@ export const postNewQuote = async (quote) => {
   }
 };
 
-export const getUserByUsername = (username, password) => {
+export const getUserByUsername = (username) => {
   return baseUrl.get(`/users/${username}`).then(({ data: { user } }) => {
-    if (user.password === password) {
-      return user
-    } else {
-      return null
-    }
+    return user
   });
 };
