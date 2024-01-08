@@ -4,6 +4,7 @@ import { Button, TextInput, View, Text, StyleSheet, Alert } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { getQoutesByUsername, getUserByUsername } from "../api/api";
 import { useUserContext } from "../Contexts/UserContext";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function Login() {
   const navigation = useNavigation();
@@ -12,6 +13,7 @@ export default function Login() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handlePressSignUp = () => {
     navigation.navigate("Signup");
@@ -26,6 +28,7 @@ export default function Login() {
   };
 
   const handlePressLogin = async () => {
+    setIsLoading(true);
     if (!username.length) {
       Alert.alert("Error", "Please enter a username");
     } else if (!password.length) {
@@ -34,6 +37,7 @@ export default function Login() {
       try {
         const quotes = (await getQoutesByUsername(username)) || [];
         await setUserValue(await getUserByUsername(username, password));
+
         navigation.navigate("Homepage", { quotes });
       } catch ({ response }) {
         Alert.alert("Error", response.data.msg);
@@ -42,6 +46,7 @@ export default function Login() {
         setPassword("");
       }
     }
+    setIsLoading(false);
   };
 
   // const handlePressCategory = () => {
@@ -60,6 +65,10 @@ export default function Login() {
   //   navigation.navigate("Navigation");
   // };
 
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <View>
       <View style={styles.login_container}>
@@ -68,7 +77,7 @@ export default function Login() {
         <View style={styles.login_input}>
           <TextInput
             style={styles.textUsername}
-            placeholder="Username"
+            placeholder='Username'
             onChangeText={handleUsernameTextChange}
             value={username}
           />
@@ -76,11 +85,16 @@ export default function Login() {
             style={styles.textUsername}
             secureTextEntry={true}
             onChangeText={handlePasswordTextChange}
-            placeholder="Password"
+            placeholder='Password'
             value={password}
           />
           <View style={styles.login_button}>
-            <Button color="#5DB075" height="100" title="Log in" onPress={handlePressLogin} />
+            <Button
+              color='#5DB075'
+              height='100'
+              title='Log in'
+              onPress={handlePressLogin}
+            />
           </View>
         </View>
         <View style={styles.signup}>

@@ -175,7 +175,7 @@ export default function Scan() {
                 onChangeText={handleOrigin}
               />
 
-              <Text>Is Private?</Text>
+              <Text>Private?</Text>
               <Checkbox
                 status={!isPrivate ? "checked" : "unchecked"}
                 onPress={() => {
