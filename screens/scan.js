@@ -40,8 +40,6 @@ export default function Scan() {
     if (resultFromUri?.length > 0) {
       let ocrText = resultFromUri.map((line) => line.text);
 
-      console.log(ocrText);
-
       ocrText = JSON.stringify(ocrText.join(" "));
       ocrText = ocrText.replaceAll("\\", " ");
       setText(ocrText);
@@ -79,12 +77,12 @@ export default function Scan() {
     console.log("saving quote...");
     const quoteToSave = {
       quoteText: text,
-      quoteAuthor: "LinkedIn",
-      quoteOrigin: "fiction book",
+      quoteAuthor: "LinkedIn", // freetext
+      quoteOrigin: "fiction book", // freetext
       quoteLocation: "[10, 10]",
       quoteImage: image,
-      quoteIsPrivate: false,
-      quoteCategory: "Billboard",
+      quoteIsPrivate: false, // boolean
+      quoteCategory: "Billboard", // freetext
       quoteUser: "Hello",
     };
     postNewQuote(quoteToSave).then((returnedQuote) => {
