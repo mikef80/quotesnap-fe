@@ -42,7 +42,7 @@ export const getUserByUsername = (username, password) => {
   return baseUrl
     .get(`/users/${username}`, { params: { password: password } })
     .then(({ data: { user } }) => user)
-    .catch((err) => {
-      console.log(err);
-    });
+    // .catch((err) => {
+    //   console.log(err);
+    // });
 };

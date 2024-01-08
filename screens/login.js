@@ -35,9 +35,8 @@ export default function Login() {
         const quotes = (await getQoutesByUsername(username)) || [];
         await setUserValue(await getUserByUsername(username, password));
         navigation.navigate("Homepage", { quotes });
-      } catch (error) {
-        // console.log(error, "<---- error from login page")
-        Alert.alert("Error", "Username not found");
+      } catch ({ response }) {
+        Alert.alert("Error", response.data.msg);
       } finally {
         setUsername("");
         setPassword("");
