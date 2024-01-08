@@ -31,7 +31,7 @@ export default function Scan() {
     }
 
     const result = await ImagePicker.launchCameraAsync({
-      quality: 1,
+      // quality: 1,
       allowsEditing: true,
     });
 
@@ -112,13 +112,13 @@ export default function Scan() {
     setCategory(text);
   }
 
-  if (!user) {
-    return (
-      <View>
-        <Login />
-      </View>
-    );
-  }
+  // if (!user) {
+  //   return (
+  //     <View>
+  //       <Login />
+  //     </View>
+  //   );
+  // }
 
   return (
     <View style={styles.Main}>
