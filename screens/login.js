@@ -70,12 +70,14 @@ export default function Login() {
             placeholder="Password"
           />
           <View style={styles.login_button}>
-            <Button
+            <TouchableOpacity
               color="#5DB075"
               height="100"
               title="Log in"
               onPress={handlePressLogin}
-            />
+            >
+              <Text style={styles.btn_text}>Log In</Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.signup}>
@@ -124,6 +126,15 @@ const styles = StyleSheet.create({
   login_button: {
     width: 300,
     marginTop: 100,
+    backgroundColor: "#5DB075",
+    padding: 20,
+    borderRadius: 30,
+  },
+  btn_text: {
+    color: "white",
+    fontSize: 16,
+    textAlign: "center",
+    fontWeight: "700",
   },
   signup: {
     width: 200,

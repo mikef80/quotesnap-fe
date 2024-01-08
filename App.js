@@ -26,7 +26,15 @@ export default function App() {
     <UserProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>
-          <Tab.Navigator>
+          <Tab.Navigator
+            screenOptions={{
+              tabBarLabelStyle: {
+                color: "#5DB075",
+                fontSize: 12,
+                padding: 3,
+              },
+            }}
+          >
             <Tab.Screen
               name="Login"
               component={loggedIn ? null : Login}
@@ -46,7 +54,7 @@ export default function App() {
                 tabBarIcon: ({ color, size }) => (
                   <MaterialCommunityIcons
                     name="home"
-                    color={color}
+                    color="#5DB075"
                     size={size}
                   />
                 ),
@@ -69,7 +77,7 @@ export default function App() {
                 tabBarIcon: ({ color, size }) => (
                   <MaterialCommunityIcons
                     name="book-open-outline"
-                    color={color}
+                    color="#5DB075"
                     size={size}
                   />
                 ),
@@ -82,7 +90,7 @@ export default function App() {
                 tabBarIcon: ({ color, size }) => (
                   <MaterialCommunityIcons
                     name="account"
-                    color={color}
+                    color="#5DB075"
                     size={size}
                   />
                 ),
@@ -95,7 +103,7 @@ export default function App() {
                 tabBarIcon: ({ color, size }) => (
                   <MaterialCommunityIcons
                     name="credit-card-scan-outline"
-                    color={color}
+                    color="#5DB075"
                     size={size}
                   />
                 ),
