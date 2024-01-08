@@ -48,9 +48,9 @@ export const postNewQuote = async (quote) => {
   }
 };
 
-export const getUserByUsername = (username, inputPassword) => {
+export const getUserByUsername = (username, password) => {
   console.log(username, inputPassword)
-  return baseUrl.get(`/users/${username}`, {}, {password: inputPassword})
+  return baseUrl.get(`/users/${username}`, { params: { password: password } })
   .then(res => {
     console.log(res)
   })
