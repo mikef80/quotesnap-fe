@@ -11,27 +11,35 @@ export default function Login() {
   const { user, setUserValue } = useUserContext();
 
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handlePressSignUp = () => {
     navigation.navigate("Signup");
   };
 
-  const handleTextChange = (newUser) => {
-    setUsername(newUser);
+  const handleUsernameTextChange = (inputUsername) => {
+    setUsername(inputUsername);
+  };
+
+  const handlePasswordTextChange = (inputPassword) => {
+    setPassword(inputPassword);
   };
 
   const handlePressLogin = async () => {
     if (!username.length) {
       Alert.alert("Error", "Please enter a username");
+    } else if (!password.length) {
+      Alert.alert("Error", "Please enter a password");
     } else {
       try {
         const quotes = (await getQoutesByUsername(username)) || [];
-        await setUserValue(await getUserByUsername(username));
+        await setUserValue(await getUserByUsername(username, password));
         navigation.navigate("Homepage", { quotes });
-      } catch (error) {
-        Alert.alert("Error", "User not found.");
+      } catch ({ response }) {
+        Alert.alert("Error", response.data.msg);
       } finally {
         setUsername("");
+        setPassword("");
       }
     }
   };
@@ -58,21 +66,27 @@ export default function Login() {
         <Text style={styles.header}>QuoteSnap</Text>
         <Text style={styles.dailyQuote}>Quote of the Day</Text>
         <View style={styles.login_input}>
+          <TextInput
+            style={styles.textUsername}
+            placeholder="Username"
+            onChangeText={handleUsernameTextChange}
+            value={username}
+          />
+          <TextInput
+            style={styles.textUsername}
+            secureTextEntry={true}
+            onChangeText={handlePasswordTextChange}
+            placeholder="Password"
+            value={password}
+          />
           <View style={styles.login_button}>
-            <TextInput
-              style={styles.textUsername}
-              placeholder="username"
-              onChangeText={handleTextChange}
-              value={username}
-            />
-
-            <Button title="Login" onPress={handlePressLogin} />
+            <Button color="#5DB075" height="100" title="Log in" onPress={handlePressLogin} />
           </View>
         </View>
         <View style={styles.signup}>
-          <Text> Not registered?</Text>
+          <Text style={styles.signup_text}> Not registered?</Text>
           <TouchableOpacity onPress={handlePressSignUp}>
-            <Text>Sign up here</Text>
+            <Text style={styles.signup_text}>Sign up here</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -84,36 +98,46 @@ const styles = StyleSheet.create({
   header: {
     margin: 20,
     textAlign: "center",
-    fontSize: 25,
+    fontSize: 30,
+    fontWeight: "600",
   },
 
   dailyQuote: {
     margin: 20,
     textAlign: "center",
-    fontSize: 15,
+    fontSize: 18,
+    fontWeight: "300",
   },
   login_input: {
-    borderColor: "#000000",
-    borderWidth: 2,
     borderRadius: 10,
     margin: 50,
     padding: 20,
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 10,
   },
   textUsername: {
-    borderColor: "grey",
+    backgroundColor: "#E8E8E8",
+    borderColor: "#E8E8E8",
     borderWidth: 0.5,
+    borderRadius: 5,
+    fontSize: 16,
     width: 150,
+    width: 300,
+    padding: 5,
   },
   login_button: {
-    flexDirection: "row",
-    alignContent: "center",
-    justifyContent: "space-between",
+    width: 300,
+    marginTop: 100,
   },
   signup: {
-    marginTop: 20,
     width: 200,
     flexDirection: "row",
     alignSelf: "center",
     justifyContent: "space-between",
+  },
+  signup_text: {
+    color: "#5DB075",
+    fontSize: 14,
   },
 });
