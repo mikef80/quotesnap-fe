@@ -31,7 +31,7 @@ export const postNewQuote = async (quote) => {
   } = quote;
 
   try {
-    const response = await baseUrl.post("/quotes", {
+    const postedQuote = await baseUrl.post("/quotes", {
       quoteText,
       quoteAuthor,
       quoteOrigin,
@@ -41,16 +41,19 @@ export const postNewQuote = async (quote) => {
       quoteCategory,
       quoteUser,
     });
-
-    const { quote } = response.data;
-    return { quote };
+    console.log(postedQuote);
+    return postedQuote;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getUserByUsername = (username) => {
+export const getUserByUsername = (username, password) => {
   return baseUrl.get(`/users/${username}`).then(({ data: { user } }) => {
-    return user;
+    if (user.password === password) {
+      return user
+    } else {
+      return null
+    }
   });
 };
