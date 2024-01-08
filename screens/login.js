@@ -11,27 +11,35 @@ export default function Login() {
   const { user, setUserValue } = useUserContext();
 
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handlePressSignUp = () => {
     navigation.navigate("Signup");
   };
 
-  const handleTextChange = (newUser) => {
-    setUsername(newUser);
+  const handleUsernameTextChange = (inputUsername) => {
+    setUsername(inputUsername);
+  };
+
+  const handlePasswordTextChange = (inputPassword) => {
+    setPassword(inputPassword);
   };
 
   const handlePressLogin = async () => {
     if (!username.length) {
       Alert.alert("Error", "Please enter a username");
+    } else if (!password.length) {
+      Alert.alert("Error", "Please enter a password");
     } else {
       try {
         const quotes = (await getQoutesByUsername(username)) || [];
-        await setUserValue(await getUserByUsername(username));
+        await setUserValue(await getUserByUsername(username, password));
         navigation.navigate("Homepage", { quotes });
-      } catch (error) {
-        Alert.alert("Error", "User not found.");
+      } catch ({ response }) {
+        Alert.alert("Error", response.data.msg);
       } finally {
         setUsername("");
+        setPassword("");
       }
     }
   };
@@ -61,21 +69,18 @@ export default function Login() {
           <TextInput
             style={styles.textUsername}
             placeholder="Username"
-            onChangeText={handleTextChange}
+            onChangeText={handleUsernameTextChange}
             value={username}
           />
           <TextInput
             style={styles.textUsername}
             secureTextEntry={true}
+            onChangeText={handlePasswordTextChange}
             placeholder="Password"
+            value={password}
           />
           <View style={styles.login_button}>
-            <Button
-              color="#5DB075"
-              height="100"
-              title="Log in"
-              onPress={handlePressLogin}
-            />
+            <Button color="#5DB075" height="100" title="Log in" onPress={handlePressLogin} />
           </View>
         </View>
         <View style={styles.signup}>
