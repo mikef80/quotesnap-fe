@@ -34,15 +34,12 @@ export default function Login() {
     } else {
       try {
         const quotes = (await getQoutesByUsername(username)) || [];
-        await setUserValue(await getUserByUsername(username));
+        await setUserValue(await getUserByUsername(username, password));
+        navigation.navigate("Homepage", { quotes });
       } catch (error) {
+        console.log(error, "<---- error from login page")
         Alert.alert("Error", "Username not found");
       } finally {
-        if (user && user.passwrod !== password) {
-        Alert.alert("Error", "Password is incorrect")
-        } else {
-          navigation.navigate("Homepage", { quotes });
-        }
         setUsername("");
         setPassword("")
       }

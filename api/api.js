@@ -48,8 +48,13 @@ export const postNewQuote = async (quote) => {
   }
 };
 
-export const getUserByUsername = (username) => {
-  return baseUrl.get(`/users/${username}`).then(({ data: { user } }) => {
-    return user
-  });
+export const getUserByUsername = (username, inputPassword) => {
+  console.log(username, inputPassword)
+  return baseUrl.get(`/users/${username}`, {}, {password: inputPassword})
+  .then(res => {
+    console.log(res)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 };
