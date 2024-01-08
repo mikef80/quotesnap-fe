@@ -27,9 +27,8 @@ export default function Login() {
 
   const handlePressLogin = async () => {
     if (!username.length) {
-      Alert.alert("Error", "Please enter a username")
-    }
-    else if (!password.length) {
+      Alert.alert("Error", "Please enter a username");
+    } else if (!password.length) {
       Alert.alert("Error", "Please enter a password");
     } else {
       try {
@@ -37,11 +36,11 @@ export default function Login() {
         await setUserValue(await getUserByUsername(username, password));
         navigation.navigate("Homepage", { quotes });
       } catch (error) {
-        console.log(error, "<---- error from login page")
+        // console.log(error, "<---- error from login page")
         Alert.alert("Error", "Username not found");
       } finally {
         setUsername("");
-        setPassword("")
+        setPassword("");
       }
     }
   };
@@ -82,12 +81,7 @@ export default function Login() {
             value={password}
           />
           <View style={styles.login_button}>
-            <Button
-              color="#5DB075"
-              height="100"
-              title="Log in"
-              onPress={handlePressLogin}
-            />
+            <Button color="#5DB075" height="100" title="Log in" onPress={handlePressLogin} />
           </View>
         </View>
         <View style={styles.signup}>

@@ -5,11 +5,9 @@ const baseUrl = axios.create({
 });
 
 export const getQoutesByUsername = (username) => {
-  return baseUrl
-    .get(`/users/${username}/quotes`)
-    .then(({ data: { quotes } }) => {
-      return quotes;
-    });
+  return baseUrl.get(`/users/${username}/quotes`).then(({ data: { quotes } }) => {
+    return quotes;
+  });
 };
 
 export const getCategories = () => {
@@ -19,16 +17,8 @@ export const getCategories = () => {
 };
 
 export const postNewQuote = async (quote) => {
-  const {
-    quoteText,
-    quoteAuthor,
-    quoteOrigin,
-    quoteLocation,
-    quoteImage,
-    quoteIsPrivate,
-    quoteCategory,
-    quoteUser,
-  } = quote;
+  const { quoteText, quoteAuthor, quoteOrigin, quoteLocation, quoteImage, quoteIsPrivate, quoteCategory, quoteUser } =
+    quote;
 
   try {
     const postedQuote = await baseUrl.post("/quotes", {
@@ -49,12 +39,10 @@ export const postNewQuote = async (quote) => {
 };
 
 export const getUserByUsername = (username, password) => {
-  console.log(username, inputPassword)
-  return baseUrl.get(`/users/${username}`, { params: { password: password } })
-  .then(res => {
-    console.log(res)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+  return baseUrl
+    .get(`/users/${username}`, { params: { password: password } })
+    .then(({ data: { user } }) => user)
+    .catch((err) => {
+      console.log(err);
+    });
 };
