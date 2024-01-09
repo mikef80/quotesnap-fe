@@ -3,7 +3,7 @@ import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useEffect, useState } from "react";
-import { getCategories, getQoutesByUsername } from "../api/api";
+import { getCategories, getQoutesByUsername, postCategory } from "../api/api";
 
 import { useUserContext } from "../Contexts/UserContext";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -20,11 +20,21 @@ export default function Categories() {
   useEffect(() => {
     if (user) {
       getQoutesByUsername(user.username).then((quotes) => {
-        setCategories([...new Set(quotes.map((quote) => quote.quoteCategory))]);
+        setCategories([
+          "All",
+          ...new Set(quotes.map((quote) => quote.quoteCategory)),
+        ]);
         setQuotes(quotes);
+        console.log(categories);
       });
     }
   }, [user]);
+
+  const handleNewCategoryPress = async () => {
+    const newCategory = "Powerful";
+await postCategory(newCategory)
+
+  };
 
   if (!user) {
     return (
@@ -35,7 +45,15 @@ export default function Categories() {
   }
 
   function handleCategoryPick(cat) {
-    navigation.navigate("Homepage", { quotes: quotes.filter((quote) => quote.quoteCategory === cat) });
+    console.log(cat);
+    if (cat === "All") {
+      console.log(quotes, "inside  the if statment ");
+      navigation.navigate("Homepage", { quotes: quotes });
+    } else {
+      navigation.navigate("Homepage", {
+        quotes: quotes.filter((quote) => quote.quoteCategory === cat),
+      });
+    }
   }
 
   return (
@@ -47,6 +65,13 @@ export default function Categories() {
           save="value"
         />
       </View> */}
+      <TouchableOpacity
+        onPress={handleNewCategoryPress}
+        style={{ position: "absolute", top: 0, right: 0 }}
+      >
+        <Text>+ New Cateogry</Text>
+      </TouchableOpacity>
+
       <Text style={styles.header}>Categories</Text>
 
       <FlatList
