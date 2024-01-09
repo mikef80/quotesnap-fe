@@ -46,3 +46,10 @@ export const getUserByUsername = (username, password) => {
     //   console.log(err);
     // });
 };
+export const postCategory = (category) => {
+
+
+  return baseUrl.post(`/categories`,{categoryName : category}).then(({data}) => {
+   return data.category
+  })
+}
