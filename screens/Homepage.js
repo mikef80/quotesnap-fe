@@ -69,6 +69,7 @@ export default function Homepage({ route }) {
 
   return (
     <View style={styles.homepageContainer}>
+      <Text style={styles.header}>Qoutes</Text>
       <TextInput style={styles.searchQuotes} placeholder="Search quotes.." />
       <View style={styles.selectList}>
         <SelectList
@@ -117,6 +118,12 @@ export default function Homepage({ route }) {
 
 const styles = StyleSheet.create({
   homepageContainer: { flex: 1 },
+  header: {
+    fontSize: 30,
+    textAlign: "center",
+    fontWeight: "700",
+    margin: 30,
+  },
   searchQuotes: {
     marginBottom: 20,
     padding: 5,
@@ -130,10 +137,14 @@ const styles = StyleSheet.create({
   },
   listText: {
     fontSize: 15,
-    borderColor: "black",
-    borderWidth: 2,
-    borderRadius: 10,
     padding: 10,
+    backgroundColor: "#5DB075",
+    color: "white",
+    textAlign: "justify",
+    borderRadius: 5,
+    textShadowColor: "rgba(0, 0, 0, 0.75)",
+    textShadowOffset: { width: 1.5, height: 1.5 },
+    textShadowRadius: 5,
   },
   selectList: {
     marginBottom: 20,
