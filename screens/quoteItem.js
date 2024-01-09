@@ -1,18 +1,27 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 
 export default function QuoteItem({ route }) {
-  const { id, text, author, origin, location, image, isPrivate, category, user } = route.params;
+  const {
+    id,
+    text,
+    author,
+    origin,
+    location,
+    image,
+    isPrivate,
+    category,
+    user,
+  } = route.params;
   return (
     <View style={styles.itemContainer}>
       <ScrollView>
         <Text style={styles.items}>Quote Item </Text>
-        <Text style={styles.items}>Quote ID: {id}</Text>
         <Text style={styles.items}>Quote text: {text}</Text>
         <Text style={styles.items}>Author: {author}</Text>
         <Text style={styles.items}>Origin: {origin}</Text>
-        <Text style={styles.items}>Location: {location}</Text>
-        <Text style={styles.items}>Image: {image}</Text>
-        <Text style={styles.items}>Is private: {isPrivate.toString()}</Text>
+        <Text style={styles.items}>
+          Visibility: {isPrivate ? "Private" : "Public"}
+        </Text>
         <Text style={styles.items}>Category: {category}</Text>
         <Text style={styles.items}>User: {user}</Text>
       </ScrollView>
