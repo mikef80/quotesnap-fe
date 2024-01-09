@@ -1,0 +1,561 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.anonymous.quotesnapfe"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="33" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:6:3-75
+11-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:6:20-73
+12    <uses-permission android:name="android.permission.CAMERA" />
+12-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:2:3-62
+12-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:2:20-60
+13    <uses-permission android:name="android.permission.INTERNET" />
+13-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:3:3-64
+13-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:3:20-62
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:4:3-77
+14-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:4:20-75
+15    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+15-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:5:3-68
+15-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:5:20-66
+16    <uses-permission android:name="android.permission.VIBRATE" />
+16-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:7:3-63
+16-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:7:20-61
+17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+17-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:8:3-78
+17-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:8:20-76
+18
+19    <queries>
+19-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:9:3-15:13
+20        <intent>
+20-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:10:5-14:14
+21            <action android:name="android.intent.action.VIEW" />
+21-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:11:7-58
+21-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:11:15-56
+22
+23            <category android:name="android.intent.category.BROWSABLE" />
+23-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:12:7-67
+23-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:12:17-65
+24
+25            <data android:scheme="https" />
+25-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:13:7-37
+25-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:13:13-35
+26        </intent>
+27
+28        <package android:name="host.exp.exponent" /> <!-- Query open documents -->
+28-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-53
+28-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:18-50
+29        <intent>
+29-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:9-17:18
+30            <action android:name="android.intent.action.OPEN_DOCUMENT_TREE" />
+30-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-79
+30-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:21-76
+31        </intent>
+32        <intent>
+32-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:9-21:18
+33
+34            <!-- Required for picking images from the camera roll if targeting API 30 -->
+35            <action android:name="android.media.action.IMAGE_CAPTURE" />
+35-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-73
+35-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:21-70
+36        </intent>
+37        <intent>
+37-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:9-26:18
+38
+39            <!-- Required for picking images from the camera if targeting API 30 -->
+40            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
+40-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-80
+40-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:21-77
+41        </intent>
+42        <intent>
+42-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/mike/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:10:9-16:18
+43            <action android:name="android.intent.action.GET_CONTENT" />
+43-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/mike/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:11:13-72
+43-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/mike/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:11:21-69
+44
+45            <category android:name="android.intent.category.OPENABLE" />
+45-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/mike/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:13:13-73
+45-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/mike/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:13:23-70
+46
+47            <data android:mimeType="*/*" />
+47-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:13:7-37
+48        </intent>
+49    </queries>
+50
+51    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+51-->[com.facebook.flipper:flipper:0.182.0] /Users/mike/.gradle/caches/transforms-3/96aa0437b2be82ab10ada7819631979e/transformed/jetified-flipper-0.182.0/AndroidManifest.xml:16:5-76
+51-->[com.facebook.flipper:flipper:0.182.0] /Users/mike/.gradle/caches/transforms-3/96aa0437b2be82ab10ada7819631979e/transformed/jetified-flipper-0.182.0/AndroidManifest.xml:16:22-73
+52
+53    <meta-data
+53-->[:react-native-mlkit-ocr] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/react-native-mlkit-ocr/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-9:31
+54        android:name="com.google.mlkit.vision.DEPENDENCIES"
+54-->[:react-native-mlkit-ocr] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/react-native-mlkit-ocr/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-60
+55        android:value="ocr" />
+55-->[:react-native-mlkit-ocr] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/react-native-mlkit-ocr/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:9-28
+56
+57    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+57-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:5-76
+57-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:22-73
+58    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+58-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:5-75
+58-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:22-72
+59
+60    <uses-feature
+60-->[com.google.android:cameraview:1.0.0] /Users/mike/.gradle/caches/transforms-3/f06ba9f2c14f7fd633efbdab07094aca/transformed/jetified-cameraview-1.0.0/AndroidManifest.xml:25:5-27:36
+61        android:name="android.hardware.camera"
+61-->[com.google.android:cameraview:1.0.0] /Users/mike/.gradle/caches/transforms-3/f06ba9f2c14f7fd633efbdab07094aca/transformed/jetified-cameraview-1.0.0/AndroidManifest.xml:26:9-47
+62        android:required="false" />
+62-->[com.google.android:cameraview:1.0.0] /Users/mike/.gradle/caches/transforms-3/f06ba9f2c14f7fd633efbdab07094aca/transformed/jetified-cameraview-1.0.0/AndroidManifest.xml:27:9-33
+63    <uses-feature
+63-->[com.google.android:cameraview:1.0.0] /Users/mike/.gradle/caches/transforms-3/f06ba9f2c14f7fd633efbdab07094aca/transformed/jetified-cameraview-1.0.0/AndroidManifest.xml:28:5-30:36
+64        android:name="android.hardware.camera.autofocus"
+64-->[com.google.android:cameraview:1.0.0] /Users/mike/.gradle/caches/transforms-3/f06ba9f2c14f7fd633efbdab07094aca/transformed/jetified-cameraview-1.0.0/AndroidManifest.xml:29:9-57
+65        android:required="false" />
+65-->[com.google.android:cameraview:1.0.0] /Users/mike/.gradle/caches/transforms-3/f06ba9f2c14f7fd633efbdab07094aca/transformed/jetified-cameraview-1.0.0/AndroidManifest.xml:30:9-33
+66
+67    <permission
+67-->[androidx.core:core:1.9.0] /Users/mike/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+68        android:name="com.anonymous.quotesnapfe.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+68-->[androidx.core:core:1.9.0] /Users/mike/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+69        android:protectionLevel="signature" />
+69-->[androidx.core:core:1.9.0] /Users/mike/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+70
+71    <uses-permission android:name="com.anonymous.quotesnapfe.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+71-->[androidx.core:core:1.9.0] /Users/mike/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+71-->[androidx.core:core:1.9.0] /Users/mike/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+72    <!-- <uses-sdk android:minSdkVersion="14"/> -->
+73    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+73-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mike/.gradle/caches/transforms-3/ec2f62070d50d04c969882c8a8ee03d0/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:25:5-79
+73-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mike/.gradle/caches/transforms-3/ec2f62070d50d04c969882c8a8ee03d0/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:25:22-76
+74    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+74-->[com.android.installreferrer:installreferrer:1.0] /Users/mike/.gradle/caches/transforms-3/79cecdc9f72d345b0cfed4a59f542eaa/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:5-110
+74-->[com.android.installreferrer:installreferrer:1.0] /Users/mike/.gradle/caches/transforms-3/79cecdc9f72d345b0cfed4a59f542eaa/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:22-107
+75
+76    <application
+76-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:16:3-35:17
+77        android:name="com.anonymous.quotesnapfe.MainApplication"
+77-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:16:16-47
+78        android:allowBackup="true"
+78-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:16:162-188
+79        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+79-->[androidx.core:core:1.9.0] /Users/mike/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+80        android:debuggable="true"
+81        android:icon="@mipmap/ic_launcher"
+81-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:16:81-115
+82        android:label="@string/app_name"
+82-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:16:48-80
+83        android:roundIcon="@mipmap/ic_launcher_round"
+83-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:16:116-161
+84        android:theme="@style/AppTheme"
+84-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:16:189-220
+85        android:usesCleartextTraffic="true" >
+85-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/debug/AndroidManifest.xml:6:18-53
+86        <meta-data
+86-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:17:5-83
+87            android:name="expo.modules.updates.ENABLED"
+87-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:17:16-59
+88            android:value="false" />
+88-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:17:60-81
+89        <meta-data
+89-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:18:5-93
+90            android:name="expo.modules.updates.EXPO_SDK_VERSION"
+90-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:18:16-68
+91            android:value="49.0.0" />
+91-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:18:69-91
+92        <meta-data
+92-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:19:5-105
+93            android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH"
+93-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:19:16-80
+94            android:value="ALWAYS" />
+94-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:19:81-103
+95        <meta-data
+95-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:20:5-99
+96            android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS"
+96-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:20:16-79
+97            android:value="0" />
+97-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:20:80-97
+98
+99        <activity
+99-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:21:5-33:16
+100            android:name="com.anonymous.quotesnapfe.MainActivity"
+100-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:21:15-43
+101            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+101-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:21:77-154
+102            android:exported="true"
+102-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:21:276-299
+103            android:label="@string/app_name"
+103-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:21:44-76
+104            android:launchMode="singleTask"
+104-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:21:155-186
+105            android:screenOrientation="portrait"
+105-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:21:300-336
+106            android:theme="@style/Theme.App.SplashScreen"
+106-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:21:230-275
+107            android:windowSoftInputMode="adjustResize" >
+107-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:21:187-229
+108            <intent-filter>
+108-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:22:7-25:23
+109                <action android:name="android.intent.action.MAIN" />
+109-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:23:9-60
+109-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:23:17-58
+110
+111                <category android:name="android.intent.category.LAUNCHER" />
+111-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:24:9-68
+111-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:24:19-66
+112            </intent-filter>
+113            <intent-filter>
+113-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:26:7-32:23
+114                <action android:name="android.intent.action.VIEW" />
+114-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:11:7-58
+114-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:11:15-56
+115
+116                <category android:name="android.intent.category.DEFAULT" />
+116-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:28:9-67
+116-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:28:19-65
+117                <category android:name="android.intent.category.BROWSABLE" />
+117-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:12:7-67
+117-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:12:17-65
+118
+119                <data android:scheme="com.anonymous.quotesnapfe" />
+119-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:13:7-37
+119-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:13:13-35
+120                <data android:scheme="exp+quotesnap-fe" />
+120-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:13:7-37
+120-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:13:13-35
+121            </intent-filter>
+122        </activity>
+123        <activity
+123-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:34:5-106
+124            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+124-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:34:15-79
+125            android:exported="false" />
+125-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:34:80-104
+126
+127        <meta-data
+127-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-14:37
+128            android:name="expo.modules.updates.AUTO_SETUP"
+128-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-59
+129            android:value="false" />
+129-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-34
+130
+131        <activity
+131-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:9-29:20
+132            android:name="expo.modules.devlauncher.launcher.DevLauncherActivity"
+132-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-81
+133            android:exported="true"
+133-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-36
+134            android:launchMode="singleTask"
+134-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-44
+135            android:theme="@style/Theme.DevLauncher.LauncherActivity" >
+135-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-70
+136            <intent-filter>
+136-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-28:29
+137                <action android:name="android.intent.action.VIEW" />
+137-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:11:7-58
+137-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:11:15-56
+138
+139                <category android:name="android.intent.category.DEFAULT" />
+139-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:28:9-67
+139-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:28:19-65
+140                <category android:name="android.intent.category.BROWSABLE" />
+140-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:12:7-67
+140-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:12:17-65
+141
+142                <data android:scheme="expo-dev-launcher" />
+142-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:13:7-37
+142-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:13:13-35
+143            </intent-filter>
+144        </activity>
+145        <activity
+145-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:9-33:70
+146            android:name="expo.modules.devlauncher.launcher.errors.DevLauncherErrorActivity"
+146-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:31:13-93
+147            android:screenOrientation="portrait"
+147-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:32:13-49
+148            android:theme="@style/Theme.DevLauncher.ErrorActivity" />
+148-->[:expo-dev-launcher] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:33:13-67
+149        <activity
+149-->[:expo-dev-menu] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-21:20
+150            android:name="expo.modules.devmenu.DevMenuActivity"
+150-->[:expo-dev-menu] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-64
+151            android:exported="true"
+151-->[:expo-dev-menu] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-36
+152            android:launchMode="singleTask"
+152-->[:expo-dev-menu] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-44
+153            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" >
+153-->[:expo-dev-menu] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-75
+154            <intent-filter>
+154-->[:expo-dev-menu] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-20:29
+155                <action android:name="android.intent.action.VIEW" />
+155-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:11:7-58
+155-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:11:15-56
+156
+157                <category android:name="android.intent.category.DEFAULT" />
+157-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:28:9-67
+157-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:28:19-65
+158                <category android:name="android.intent.category.BROWSABLE" />
+158-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:12:7-67
+158-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:12:17-65
+159
+160                <data android:scheme="expo-dev-menu" />
+160-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:13:7-37
+160-->/Users/mike/Northcoders/projects/quotesnap-fe/android/app/src/main/AndroidManifest.xml:13:13-35
+161            </intent-filter>
+162        </activity>
+163
+164        <provider
+164-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:9-30:20
+165            android:name="expo.modules.filesystem.FileSystemFileProvider"
+165-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-74
+166            android:authorities="com.anonymous.quotesnapfe.FileSystemFileProvider"
+166-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-74
+167            android:exported="false"
+167-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-37
+168            android:grantUriPermissions="true" >
+168-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-47
+169            <meta-data
+169-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-29:70
+170                android:name="android.support.FILE_PROVIDER_PATHS"
+170-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:17-67
+171                android:resource="@xml/file_system_provider_paths" />
+171-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:17-67
+172        </provider>
+173
+174        <service
+174-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:9-42:19
+175            android:name="com.google.android.gms.metadata.ModuleDependencies"
+175-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:31:13-78
+176            android:enabled="false"
+176-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:32:13-36
+177            android:exported="false" >
+177-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:33:13-37
+178            <intent-filter>
+178-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:35:13-37:29
+179                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
+179-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:17-94
+179-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:25-91
+180            </intent-filter>
+181
+182            <meta-data
+182-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:39:13-41:36
+183                android:name="photopicker_activity:0:required"
+183-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:40:17-63
+184                android:value="" />
+184-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:41:17-33
+185        </service>
+186
+187        <activity
+187-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:44:9-46:59
+188            android:name="com.canhub.cropper.CropImageActivity"
+188-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:45:13-64
+189            android:exported="true"
+189-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/mike/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:35:13-36
+190            android:theme="@style/Base.Theme.AppCompat" /> <!-- https://developer.android.com/guide/topics/manifest/provider-element.html -->
+190-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:46:13-56
+191        <provider
+191-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:48:9-56:20
+192            android:name="expo.modules.imagepicker.fileprovider.ImagePickerFileProvider"
+192-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:49:13-89
+193            android:authorities="com.anonymous.quotesnapfe.ImagePickerFileProvider"
+193-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:50:13-75
+194            android:exported="false"
+194-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:51:13-37
+195            android:grantUriPermissions="true" >
+195-->[:expo-image-picker] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:52:13-47
+196            <meta-data
+196-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-29:70
+197                android:name="android.support.FILE_PROVIDER_PATHS"
+197-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:17-67
+198                android:resource="@xml/image_picker_provider_paths" />
+198-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:17-67
+199        </provider>
+200
+201        <meta-data
+201-->[:expo-modules-core] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:9-11:89
+202            android:name="org.unimodules.core.AppLoader#react-native-headless"
+202-->[:expo-modules-core] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-79
+203            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
+203-->[:expo-modules-core] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-86
+204        <meta-data
+204-->[:expo-modules-core] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-15:45
+205            android:name="com.facebook.soloader.enabled"
+205-->[:expo-modules-core] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-57
+206            android:value="true" />
+206-->[:expo-modules-core] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-33
+207
+208        <provider
+208-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/mike/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:23:9-31:20
+209            android:name="com.canhub.cropper.CropFileProvider"
+209-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/mike/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:24:13-63
+210            android:authorities="com.anonymous.quotesnapfe.cropper.fileprovider"
+210-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/mike/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:25:13-72
+211            android:exported="false"
+211-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/mike/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:26:13-37
+212            android:grantUriPermissions="true" >
+212-->[com.github.CanHub:Android-Image-Cropper:4.3.1] /Users/mike/.gradle/caches/transforms-3/bcb008d0d21366cb948c612bcf9fae1d/transformed/jetified-Android-Image-Cropper-4.3.1/AndroidManifest.xml:27:13-47
+213            <meta-data
+213-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-29:70
+214                android:name="android.support.FILE_PROVIDER_PATHS"
+214-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:17-67
+215                android:resource="@xml/library_file_paths" />
+215-->[:expo-file-system] /Users/mike/Northcoders/projects/quotesnap-fe/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:17-67
+216        </provider>
+217
+218        <service
+218-->[com.google.android.gms:play-services-mlkit-text-recognition-common:18.0.0] /Users/mike/.gradle/caches/transforms-3/3e1c0931b7b93065eb7b83df48f41648/transformed/jetified-play-services-mlkit-text-recognition-common-18.0.0/AndroidManifest.xml:9:9-15:19
+219            android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
+219-->[com.google.android.gms:play-services-mlkit-text-recognition-common:18.0.0] /Users/mike/.gradle/caches/transforms-3/3e1c0931b7b93065eb7b83df48f41648/transformed/jetified-play-services-mlkit-text-recognition-common-18.0.0/AndroidManifest.xml:10:13-91
+220            android:directBootAware="true"
+220-->[com.google.mlkit:common:18.5.0] /Users/mike/.gradle/caches/transforms-3/5095fd528f8a97772903afa8f3ccfcee/transformed/jetified-common-18.5.0/AndroidManifest.xml:17:13-43
+221            android:exported="false" >
+221-->[com.google.android.gms:play-services-mlkit-text-recognition-common:18.0.0] /Users/mike/.gradle/caches/transforms-3/3e1c0931b7b93065eb7b83df48f41648/transformed/jetified-play-services-mlkit-text-recognition-common-18.0.0/AndroidManifest.xml:11:13-37
+222            <meta-data
+222-->[com.google.android.gms:play-services-mlkit-text-recognition-common:18.0.0] /Users/mike/.gradle/caches/transforms-3/3e1c0931b7b93065eb7b83df48f41648/transformed/jetified-play-services-mlkit-text-recognition-common-18.0.0/AndroidManifest.xml:12:13-14:85
+223                android:name="com.google.firebase.components:com.google.mlkit.vision.text.internal.TextRegistrar"
+223-->[com.google.android.gms:play-services-mlkit-text-recognition-common:18.0.0] /Users/mike/.gradle/caches/transforms-3/3e1c0931b7b93065eb7b83df48f41648/transformed/jetified-play-services-mlkit-text-recognition-common-18.0.0/AndroidManifest.xml:13:17-114
+224                android:value="com.google.firebase.components.ComponentRegistrar" />
+224-->[com.google.android.gms:play-services-mlkit-text-recognition-common:18.0.0] /Users/mike/.gradle/caches/transforms-3/3e1c0931b7b93065eb7b83df48f41648/transformed/jetified-play-services-mlkit-text-recognition-common-18.0.0/AndroidManifest.xml:14:17-82
+225            <meta-data
+225-->[com.google.mlkit:vision-common:17.2.1] /Users/mike/.gradle/caches/transforms-3/08bfb8b545301c095b83f15c5e477ce1/transformed/jetified-vision-common-17.2.1/AndroidManifest.xml:12:13-14:85
+226                android:name="com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar"
+226-->[com.google.mlkit:vision-common:17.2.1] /Users/mike/.gradle/caches/transforms-3/08bfb8b545301c095b83f15c5e477ce1/transformed/jetified-vision-common-17.2.1/AndroidManifest.xml:13:17-124
+227                android:value="com.google.firebase.components.ComponentRegistrar" />
+227-->[com.google.mlkit:vision-common:17.2.1] /Users/mike/.gradle/caches/transforms-3/08bfb8b545301c095b83f15c5e477ce1/transformed/jetified-vision-common-17.2.1/AndroidManifest.xml:14:17-82
+228            <meta-data
+228-->[com.google.mlkit:common:18.5.0] /Users/mike/.gradle/caches/transforms-3/5095fd528f8a97772903afa8f3ccfcee/transformed/jetified-common-18.5.0/AndroidManifest.xml:20:13-22:85
+229                android:name="com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar"
+229-->[com.google.mlkit:common:18.5.0] /Users/mike/.gradle/caches/transforms-3/5095fd528f8a97772903afa8f3ccfcee/transformed/jetified-common-18.5.0/AndroidManifest.xml:21:17-120
+230                android:value="com.google.firebase.components.ComponentRegistrar" />
+230-->[com.google.mlkit:common:18.5.0] /Users/mike/.gradle/caches/transforms-3/5095fd528f8a97772903afa8f3ccfcee/transformed/jetified-common-18.5.0/AndroidManifest.xml:22:17-82
+231        </service>
+232
+233        <provider
+233-->[com.google.mlkit:common:18.5.0] /Users/mike/.gradle/caches/transforms-3/5095fd528f8a97772903afa8f3ccfcee/transformed/jetified-common-18.5.0/AndroidManifest.xml:9:9-13:38
+234            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
+234-->[com.google.mlkit:common:18.5.0] /Users/mike/.gradle/caches/transforms-3/5095fd528f8a97772903afa8f3ccfcee/transformed/jetified-common-18.5.0/AndroidManifest.xml:10:13-78
+235            android:authorities="com.anonymous.quotesnapfe.mlkitinitprovider"
+235-->[com.google.mlkit:common:18.5.0] /Users/mike/.gradle/caches/transforms-3/5095fd528f8a97772903afa8f3ccfcee/transformed/jetified-common-18.5.0/AndroidManifest.xml:11:13-69
+236            android:exported="false"
+236-->[com.google.mlkit:common:18.5.0] /Users/mike/.gradle/caches/transforms-3/5095fd528f8a97772903afa8f3ccfcee/transformed/jetified-common-18.5.0/AndroidManifest.xml:12:13-37
+237            android:initOrder="99" />
+237-->[com.google.mlkit:common:18.5.0] /Users/mike/.gradle/caches/transforms-3/5095fd528f8a97772903afa8f3ccfcee/transformed/jetified-common-18.5.0/AndroidManifest.xml:13:13-35
+238
+239        <activity
+239-->[com.google.android.gms:play-services-base:18.1.0] /Users/mike/.gradle/caches/transforms-3/0bf2ba491b3006fd0d30404ebd488709/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:20:9-22:45
+240            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+240-->[com.google.android.gms:play-services-base:18.1.0] /Users/mike/.gradle/caches/transforms-3/0bf2ba491b3006fd0d30404ebd488709/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:20:19-85
+241            android:exported="false"
+241-->[com.google.android.gms:play-services-base:18.1.0] /Users/mike/.gradle/caches/transforms-3/0bf2ba491b3006fd0d30404ebd488709/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:22:19-43
+242            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+242-->[com.google.android.gms:play-services-base:18.1.0] /Users/mike/.gradle/caches/transforms-3/0bf2ba491b3006fd0d30404ebd488709/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:21:19-78
+243
+244        <meta-data
+244-->[com.google.android.gms:play-services-basement:18.1.0] /Users/mike/.gradle/caches/transforms-3/9e25a778aa851eaa5cf931131404a5e7/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:21:9-23:69
+245            android:name="com.google.android.gms.version"
+245-->[com.google.android.gms:play-services-basement:18.1.0] /Users/mike/.gradle/caches/transforms-3/9e25a778aa851eaa5cf931131404a5e7/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:22:13-58
+246            android:value="@integer/google_play_services_version" />
+246-->[com.google.android.gms:play-services-basement:18.1.0] /Users/mike/.gradle/caches/transforms-3/9e25a778aa851eaa5cf931131404a5e7/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:23:13-66
+247
+248        <provider
+248-->[androidx.emoji2:emoji2:1.2.0] /Users/mike/.gradle/caches/transforms-3/db3c11bab3ba2a324b0325c1fa29ef2f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+249            android:name="androidx.startup.InitializationProvider"
+249-->[androidx.emoji2:emoji2:1.2.0] /Users/mike/.gradle/caches/transforms-3/db3c11bab3ba2a324b0325c1fa29ef2f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+250            android:authorities="com.anonymous.quotesnapfe.androidx-startup"
+250-->[androidx.emoji2:emoji2:1.2.0] /Users/mike/.gradle/caches/transforms-3/db3c11bab3ba2a324b0325c1fa29ef2f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+251            android:exported="false" >
+251-->[androidx.emoji2:emoji2:1.2.0] /Users/mike/.gradle/caches/transforms-3/db3c11bab3ba2a324b0325c1fa29ef2f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+252            <meta-data
+252-->[androidx.emoji2:emoji2:1.2.0] /Users/mike/.gradle/caches/transforms-3/db3c11bab3ba2a324b0325c1fa29ef2f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+253                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+253-->[androidx.emoji2:emoji2:1.2.0] /Users/mike/.gradle/caches/transforms-3/db3c11bab3ba2a324b0325c1fa29ef2f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+254                android:value="androidx.startup" />
+254-->[androidx.emoji2:emoji2:1.2.0] /Users/mike/.gradle/caches/transforms-3/db3c11bab3ba2a324b0325c1fa29ef2f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+255            <meta-data
+255-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/mike/.gradle/caches/transforms-3/b3cb99c8228f7b004acc305315f9f395/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:29:13-31:52
+256                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+256-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/mike/.gradle/caches/transforms-3/b3cb99c8228f7b004acc305315f9f395/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:30:17-78
+257                android:value="androidx.startup" />
+257-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/mike/.gradle/caches/transforms-3/b3cb99c8228f7b004acc305315f9f395/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:31:17-49
+258            <meta-data
+258-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+259                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+259-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+260                android:value="androidx.startup" />
+260-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+261        </provider>
+262
+263        <receiver
+263-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+264            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+264-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+265            android:directBootAware="false"
+265-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+266            android:enabled="true"
+266-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+267            android:exported="true"
+267-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+268            android:permission="android.permission.DUMP" >
+268-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+269            <intent-filter>
+269-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+270                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+270-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+270-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+271            </intent-filter>
+272            <intent-filter>
+272-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+273                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+273-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+273-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+274            </intent-filter>
+275            <intent-filter>
+275-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+276                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+276-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+276-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+277            </intent-filter>
+278            <intent-filter>
+278-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+279                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+279-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+279-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mike/.gradle/caches/transforms-3/cd0619271537d84f07f6b6e89c9c818c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+280            </intent-filter>
+281        </receiver>
+282
+283        <service
+283-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mike/.gradle/caches/transforms-3/ec2f62070d50d04c969882c8a8ee03d0/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:29:9-35:19
+284            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+284-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mike/.gradle/caches/transforms-3/ec2f62070d50d04c969882c8a8ee03d0/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:30:13-103
+285            android:exported="false" >
+285-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mike/.gradle/caches/transforms-3/ec2f62070d50d04c969882c8a8ee03d0/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:31:13-37
+286            <meta-data
+286-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mike/.gradle/caches/transforms-3/ec2f62070d50d04c969882c8a8ee03d0/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:32:13-34:39
+287                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+287-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mike/.gradle/caches/transforms-3/ec2f62070d50d04c969882c8a8ee03d0/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:33:17-94
+288                android:value="cct" />
+288-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/mike/.gradle/caches/transforms-3/ec2f62070d50d04c969882c8a8ee03d0/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:34:17-36
+289        </service>
+290        <service
+290-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/mike/.gradle/caches/transforms-3/56222143cd2a15436ff8b0bdbc195f1e/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:26:9-30:19
+291            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+291-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/mike/.gradle/caches/transforms-3/56222143cd2a15436ff8b0bdbc195f1e/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:27:13-117
+292            android:exported="false"
+292-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/mike/.gradle/caches/transforms-3/56222143cd2a15436ff8b0bdbc195f1e/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:28:13-37
+293            android:permission="android.permission.BIND_JOB_SERVICE" >
+293-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/mike/.gradle/caches/transforms-3/56222143cd2a15436ff8b0bdbc195f1e/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:29:13-69
+294        </service>
+295
+296        <receiver
+296-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/mike/.gradle/caches/transforms-3/56222143cd2a15436ff8b0bdbc195f1e/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:32:9-34:40
+297            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+297-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/mike/.gradle/caches/transforms-3/56222143cd2a15436ff8b0bdbc195f1e/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:33:13-132
+298            android:exported="false" />
+298-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/mike/.gradle/caches/transforms-3/56222143cd2a15436ff8b0bdbc195f1e/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:34:13-37
+299    </application>
+300
+301</manifest>

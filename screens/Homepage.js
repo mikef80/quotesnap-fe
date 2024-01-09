@@ -86,11 +86,7 @@ export default function Homepage({ route }) {
       <Text style={styles.header}>Qoutes</Text>
       <TextInput style={styles.searchQuotes} placeholder="Search quotes.." />
       <View style={styles.selectList}>
-        <SelectList
-          setSelected={(val) => setSelected(val)}
-          data={data}
-          save="value"
-        />
+        <SelectList setSelected={(val) => setSelected(val)} data={data} save="value" />
       </View>
       {isLoading && (
         <View>

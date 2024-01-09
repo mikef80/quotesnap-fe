@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.anonymous.quotesnapfe.app-mergeDebugResources-53:/values-ldltr-v21/values-ldltr-v21.xml",
+            "map": [
+                {
+                    "source": "/Users/mike/.gradle/caches/transforms-3/8fc775a10259692585e5f093b80f9883/transformed/appcompat-1.6.1/res/values-ldltr-v21/values-ldltr-v21.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "112",
+                        "endOffsets": "163"
+                    }
+                }
+            ]
+        }
+    ]
+}
