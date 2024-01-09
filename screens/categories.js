@@ -3,43 +3,40 @@ import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useEffect, useState } from "react";
-import { getCategories } from "../api/api";
+import { getCategories, getQoutesByUsername } from "../api/api";
+
+import { useUserContext } from "../Contexts/UserContext";
+import LoadingSpinner from "../components/LoadingSpinner";
+import Login from "./login";
+
+import { useNavigation } from "@react-navigation/native";
 
 export default function Categories() {
+  const navigation = useNavigation();
   const [categories, setCategories] = useState("");
+  const [quotes, setQuotes] = useState("");
+  const { user } = useUserContext();
 
-  // const categories = [
-  //   {
-  //     categoryId: 1,
-  //     categoryName: "Book",
-  //     categoryDescription: "A collection of pages that can tell a story",
-  //   },
-  //   {
-  //     categoryId: 2,
-  //     categoryName: "Speech",
-  //     categoryDescription: "A vocalisation of a story",
-  //   },
-  //   {
-  //     categoryId: 3,
-  //     categoryName: "Billboard",
-  //     categoryDescription:
-  //       "A sign that can be seen outside, usually used for marketing purposes",
-  //   },
-  // ];
   useEffect(() => {
-    retrieveCategories();
-  }, []);
+    if (user) {
+      getQoutesByUsername(user.username).then((quotes) => {
+        setCategories([...new Set(quotes.map((quote) => quote.quoteCategory))]);
+        setQuotes(quotes);
+      });
+    }
+  }, [user]);
 
-  const retrieveCategories = async () => {
-    const categoriesReceived = await getCategories();
-    setCategories(categoriesReceived);
-  };
+  if (!user) {
+    return (
+      <View>
+        <Login />
+      </View>
+    );
+  }
 
-  // const data = [
-  //   { key: "1", value: categories[0].categoryName },
-  //   { key: "2", value: categories[1].categoryName },
-  //   { key: "3", value: categories[2].categoryName },
-  // ];
+  function handleCategoryPick(cat) {
+    navigation.navigate("Homepage", { quotes: quotes.filter((quote) => quote.quoteCategory === cat) });
+  }
 
   return (
     <View style={styles.categoriesContainer}>
@@ -57,9 +54,13 @@ export default function Categories() {
         renderItem={({ item }) => {
           return (
             <ScrollView style={styles.items}>
-              <TouchableOpacity>
-                <Text style={styles.listText} key={item.categoryId}>
-                  {item.categoryName}: {item.categoryDescription}
+              <TouchableOpacity
+                onPress={() => {
+                  handleCategoryPick(item);
+                }}
+              >
+                <Text style={styles.listText} key={item}>
+                  {item}
                 </Text>
               </TouchableOpacity>
             </ScrollView>
