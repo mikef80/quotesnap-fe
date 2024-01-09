@@ -40,7 +40,7 @@ export default function Profile() {
       <View style={styles.username}>
         <View style={styles.username_container}>
           <Text style={styles.username_text}>
-            {user ? user.username : null}username
+            {user ? user.username : null}
           </Text>
         </View>
         <View style={styles.logout}>
