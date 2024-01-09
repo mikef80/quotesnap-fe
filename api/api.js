@@ -5,9 +5,11 @@ const baseUrl = axios.create({
 });
 
 export const getQoutesByUsername = (username) => {
-  return baseUrl.get(`/users/${username}/quotes`).then(({ data: { quotes } }) => {
-    return quotes;
-  });
+  return baseUrl
+    .get(`/users/${username}/quotes`)
+    .then(({ data: { quotes } }) => {
+      return quotes;
+    });
 };
 
 export const getCategories = () => {
@@ -59,4 +61,7 @@ export const postCategory = (category) => {
   return baseUrl.post(`/categories`, { categoryName: category }).then(({ data }) => {
     return data.category;
   });
+};
+export const postNewUser = (userObject) => {
+  return baseUrl.post("/users", userObject).then(({ data: { user } }) => user);
 };
