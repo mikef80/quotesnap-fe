@@ -1,5 +1,5 @@
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
+import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useEffect, useState } from "react";
@@ -50,18 +50,19 @@ export default function Categories() {
           save="value"
         />
       </View> */}
+      <Text style={styles.header}>Categories</Text>
 
       <FlatList
         data={categories}
         renderItem={({ item }) => {
           return (
-            <View style={styles.items}>
+            <ScrollView style={styles.items}>
               <TouchableOpacity>
                 <Text style={styles.listText} key={item.categoryId}>
                   {item.categoryName}: {item.categoryDescription}
                 </Text>
               </TouchableOpacity>
-            </View>
+            </ScrollView>
           );
         }}
       />
@@ -77,15 +78,25 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
   },
+  header: {
+    fontSize: 30,
+    textAlign: "center",
+    fontWeight: "700",
+    marginBottom: 30,
+  },
   items: {
     margin: 15,
   },
   listText: {
     fontSize: 15,
-    borderColor: "black",
-    borderWidth: 2,
-    borderRadius: 10,
-    padding: 10,
+    padding: 8,
+    backgroundColor: "#5DB075",
+    color: "white",
+    textAlign: "justify",
+    borderRadius: 5,
+    textShadowColor: "rgba(0, 0, 0, 0.75)",
+    textShadowOffset: { width: 1.5, height: 1.5 },
+    textShadowRadius: 5,
   },
   selectList: {
     marginBottom: 20,
