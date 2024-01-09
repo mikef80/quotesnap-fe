@@ -41,7 +41,6 @@ export const postNewQuote = async (quote) => {
       quoteCategory,
       quoteUser,
     });
-    console.log(postedQuote);
     return postedQuote;
   } catch (error) {
     console.log(error);
@@ -61,8 +60,6 @@ export const deleteQuoteById = async (id) => {
   return await baseUrl.delete(`/quotes/${id}`);
 };
 export const postCategory = (category) => {
-
-
   return baseUrl.post(`/categories`,{categoryName : category}).then(({data}) => {
    return data.category
   })
