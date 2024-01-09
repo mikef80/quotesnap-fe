@@ -1,5 +1,14 @@
 import { useEffect, useState } from "react";
-import { Button, TextInput, View, Text, StyleSheet, Alert, Image, TouchableHighlight } from "react-native";
+import {
+  Button,
+  TextInput,
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  Image,
+  TouchableHighlight,
+} from "react-native";
 import { postNewUser } from "../api/api";
 import { useUserContext } from "../Contexts/UserContext";
 import { useNavigation } from "@react-navigation/native";
@@ -14,7 +23,9 @@ export default function Signup() {
   const [passwordLength, setPasswordLength] = useState(0);
   const [userObject, setuserObject] = useState({});
   const [isLoading, setIsloading] = useState(false);
-  const [selectedAvatar, setSelectedAvatar] = useState('')
+  const [selectedAvatar, setSelectedAvatar] = useState(
+    "../assets/avatar1.jpeg"
+  );
 
   const { user, setUserValue } = useUserContext();
 
@@ -53,6 +64,7 @@ export default function Signup() {
           setUsername("");
           setPassword("");
           setPasswordConfirmation("");
+          setSelectedAvatar("../assets/avatar1.jpeg");
           navigation.navigate("Homepage");
         })
         .catch(({ response }) => {
@@ -68,16 +80,15 @@ export default function Signup() {
     }
   };
 
-
   useEffect(() => {
     setuserObject({
       firstname,
       lastname,
       username,
       password,
-      avatar: selectedAvatar
+      avatar: selectedAvatar,
     });
-  }, [firstname, lastname, username, password]);
+  }, [firstname, lastname, username, password, selectedAvatar]);
 
   useEffect(() => {
     setPasswordLength(password.length);
@@ -97,28 +108,49 @@ export default function Signup() {
           <View style={styles.signup_input}>
             <View style={styles.contents}>
               <Text>Select your avatar</Text>
-              <View style={{flexDirection:"row"}}>
-                <TouchableHighlight onPress={() => setSelectedAvatar("../assets/avatar1.jpeg")}>
-              <Image
-              style={[styles.avatar, selectedAvatar==="../assets/avatar1.jpeg" && styles.selected]}
-              source={require("../assets/avatar1.jpeg")}
-              blurRadius={selectedAvatar !== "../assets/avatar1.jpeg" ? 5:0}
-              />
-              </TouchableHighlight>
-              <TouchableHighlight onPress={() => setSelectedAvatar("../assets/avatar2.jpeg")}>
-              <Image
-              style={[styles.avatar, selectedAvatar==="../assets/avatar2.jpeg" && styles.selected]}
-              source={require("../assets/avatar2.jpeg")}
-              blurRadius={selectedAvatar !== "../assets/avatar2.jpeg" ? 5:0}
-              />
-              </TouchableHighlight>
-              <TouchableHighlight onPress={() => setSelectedAvatar("../assets/avatar3.png")}>
-              <Image
-              style={[styles.avatar, selectedAvatar==="../assets/avatar3.png" && styles.selected]}
-              source={require("../assets/avatar3.png")}
-              blurRadius={selectedAvatar !== "../assets/avatar3.png" ? 5:0}
-              />
-              </TouchableHighlight>
+              <View style={{ flexDirection: "row" }}>
+                <TouchableHighlight
+                  onPress={() => setSelectedAvatar("../assets/avatar1.jpeg")}>
+                  <Image
+                    style={[
+                      styles.avatar,
+                      selectedAvatar === "../assets/avatar1.jpeg" &&
+                        styles.selected,
+                    ]}
+                    source={require("../assets/avatar1.jpeg")}
+                    blurRadius={
+                      selectedAvatar !== "../assets/avatar1.jpeg" ? 5 : 0
+                    }
+                  />
+                </TouchableHighlight>
+                <TouchableHighlight
+                  onPress={() => setSelectedAvatar("../assets/avatar2.jpeg")}>
+                  <Image
+                    style={[
+                      styles.avatar,
+                      selectedAvatar === "../assets/avatar2.jpeg" &&
+                        styles.selected,
+                    ]}
+                    source={require("../assets/avatar2.jpeg")}
+                    blurRadius={
+                      selectedAvatar !== "../assets/avatar2.jpeg" ? 5 : 0
+                    }
+                  />
+                </TouchableHighlight>
+                <TouchableHighlight
+                  onPress={() => setSelectedAvatar("../assets/avatar3.png")}>
+                  <Image
+                    style={[
+                      styles.avatar,
+                      selectedAvatar === "../assets/avatar3.png" &&
+                        styles.selected,
+                    ]}
+                    source={require("../assets/avatar3.png")}
+                    blurRadius={
+                      selectedAvatar !== "../assets/avatar3.png" ? 5 : 0
+                    }
+                  />
+                </TouchableHighlight>
               </View>
               <TextInput
                 onChangeText={handleFirstnameChange}
@@ -205,10 +237,10 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderWidth: 1,
-    borderColor: "white" 
+    borderColor: "white",
   },
   selected: {
     width: 100,
-    height: 100
-  }
+    height: 100,
+  },
 });
