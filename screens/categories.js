@@ -1,21 +1,9 @@
-import {
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  Text,
-  Button,
-  Dimensions,
-} from "react-native";
+import { StyleSheet, TouchableOpacity, View, Text, Button, Dimensions, Keyboard } from "react-native";
 import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useEffect, useState } from "react";
-import {
-  getCategories,
-  getQoutesByUsername,
-  postCategory,
-  postNewQuote,
-} from "../api/api";
+import { getCategories, getQoutesByUsername, postCategory, postNewQuote } from "../api/api";
 
 import { useUserContext } from "../Contexts/UserContext";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -62,10 +50,7 @@ export default function Categories() {
       setIsLoading(true);
       if (user) {
         getQoutesByUsername(user.username).then((quotes) => {
-          setCategories([
-            "All",
-            ...new Set(quotes.map((quote) => quote.quoteCategory)),
-          ]);
+          setCategories(["All", ...new Set(quotes.map((quote) => quote.quoteCategory))]);
           setQuotes(quotes);
           setIsLoading(false);
         });
@@ -84,6 +69,22 @@ export default function Categories() {
     setNewCategory("");
   };
 
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardVisible(true); // or some other action
+    });
+    const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardVisible(false); // or some other action
+    });
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
+
   // if (!user) {
   //   return (
   //     <View>
@@ -92,18 +93,19 @@ export default function Categories() {
   //   );
   // }
 
-  if (isLoading) {
-    if (isLoading) {
-      return <LoadingSpinner />;
-    }
-  }
+  // if (isLoading) {
+  //   if (isLoading) {
+  //     return <LoadingSpinner />;
+  //   }
+  // }
 
   function handleCategoryPick(cat) {
+    const filteredQuotes = quotes.filter((quote) => quote.quoteOrigin !== "ghost");
     if (cat === "All") {
-      navigation.navigate("Homepage", { quotes: quotes });
+      navigation.navigate("Homepage", { quotes: filteredQuotes });
     } else {
       navigation.navigate("Homepage", {
-        quotes: quotes.filter((quote) => quote.quoteCategory === cat),
+        quotes: filteredQuotes.filter((quote) => quote.quoteCategory === cat),
       });
     }
   }
@@ -111,25 +113,27 @@ export default function Categories() {
   return (
     <View style={styles.categoriesContainer}>
       {modalVisible ? (
-        <View style={{}}>
-          <Button title="Show modal" onPress={toggleModal} />
+        <View>
 
           <Modal
             isVisible={modalVisible}
             style={{
-              backgroundColor: "gray",
+              backgroundColor: "#5A5A5A",
               borderRadius: 20,
-              marginTop: 250,
-              marginBottom: 250,
+              marginTop: 200,
+              marginBottom: isKeyboardVisible ? 120 : 400,
             }}
           >
             <View style={{ flex: 1, padding: 20 }}>
-              <Text>New Cateogry </Text>
-              <Text>Enter a name for this category. </Text>
+              <Text style={{ textAlign: "center", fontSize: 20, color: "white" }}>New Category </Text>
+              <Text style={{ textAlign: "center", color: "white", marginBottom: 20 }}>
+                Enter a name for this category.{" "}
+              </Text>
               <TextInput
                 value={newCategory}
                 onChangeText={handleTextChange}
-                style={{ borderWidth: 1, borderColor: "#FFFFFF" }}
+                style={{ borderWidth: 1, backgroundColor: "black", color: "white" }}
+                placeholder="Title"
                 // autoCorrect={true}
               ></TextInput>
               <View
@@ -137,18 +141,23 @@ export default function Categories() {
                   flexDirection: "row",
                   position: "relative",
                   bottom: 0,
+                  marginTop: 20,
+                  alignContent: "center",
+                  justifyContent: "center",
                 }}
               >
-                <Button
-                  style={{ margin: 200 }}
-                  title="Cancel"
+                <TouchableOpacity
+                  style={{ height: 70, width: 180, borderRadius: 10, alignItems: "center", justifyContent: "center" }}
                   onPress={toggleModal}
-                />
-                <Button
-                  style={{ margin: 20 }}
-                  title="Add"
+                >
+                  <Text style={{ fontSize: 40, color: "#5DB075" }}>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{ height: 70, width: 180, borderRadius: 10, alignItems: "center", justifyContent: "center" }}
                   onPress={addCategory}
-                />
+                >
+                  <Text style={{ fontSize: 40, color: "#5DB075" }}>Add</Text>
+                </TouchableOpacity>
               </View>
             </View>
           </Modal>
@@ -163,9 +172,31 @@ export default function Categories() {
       </View> */}
       <TouchableOpacity
         onPress={handleNewCategoryPress}
-        style={{ position: "absolute", top: 0, right: 0 }}
+        style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          backgroundColor: "#5DB075",
+          height: 40,
+          width: 150,
+          marginRight: 15,
+          marginTop: 10,
+          borderRadius: 5,
+          justifyContent: "center",
+        }}
       >
-        <Text>+ New Category</Text>
+        <Text
+          style={{
+            color: "white",
+            textAlign: "center",
+            fontSize: 18,
+            textShadowColor: "rgba(0, 0, 0, 0.75)",
+            textShadowOffset: { width: 1.5, height: 1.5 },
+            textShadowRadius: 5,
+          }}
+        >
+          + New Category
+        </Text>
       </TouchableOpacity>
 
       <Text style={styles.header}>Categories</Text>
@@ -205,6 +236,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "700",
     marginBottom: 30,
+    marginTop: 30,
   },
   items: {
     margin: 15,
