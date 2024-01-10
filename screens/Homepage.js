@@ -1,5 +1,7 @@
+
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { View, Text, TextInput, StyleSheet, FlatList } from "react-native";
+
 import { SelectList } from "react-native-dropdown-select-list";
 import { useState, useEffect } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -37,6 +39,7 @@ export default function Homepage({ route }) {
   const updateProps = (newProps) => {
     setProps(newProps);
   };
+
 
   const data = [
     { key: "1", value: "Personal" },
@@ -79,11 +82,13 @@ export default function Homepage({ route }) {
   return (
     <View style={styles.homepageContainer}>
       <Text style={styles.header}>Quotes</Text>
+
       {isLoading && (
         <View>
           <LoadingSpinner />
         </View>
       )}
+
       {quotes?.length ? (
         <FlatList
           data={quotes}

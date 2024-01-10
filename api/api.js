@@ -39,14 +39,17 @@ export const postNewQuote = async (quote) => {
 
 export const getUserByUsername = (username, password) => {
   return baseUrl.get(`/users/${username}`, { params: { password: password } }).then(({ data: { user } }) => user);
+
   // .catch((err) => {
   //   console.log(err);
   // });
 };
 
+
 export const deleteQuoteById = async (id) => {
   return await baseUrl.delete(`/quotes/${id}`);
 };
+
 export const postCategory = (category) => {
   return baseUrl.post(`/categories`, { categoryName: category }).then(({ data }) => {
     return data.category;
