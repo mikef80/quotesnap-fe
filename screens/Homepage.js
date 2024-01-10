@@ -69,7 +69,7 @@ export default function Homepage({ route }) {
 
   return (
     <View style={styles.homepageContainer}>
-      <Text style={styles.header}>Qoutes</Text>
+      <Text style={styles.header}>Quotes</Text>
       <TextInput style={styles.searchQuotes} placeholder="Search quotes.." />
       <View style={styles.selectList}>
         <SelectList
