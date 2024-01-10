@@ -1,6 +1,13 @@
+import { useNavigation } from "@react-navigation/native";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useEffect } from "react";
+import Homepage from "./Homepage";
+import { deleteQuoteById } from "../api/api";
 
 export default function QuoteItem({ route }) {
+  const navigation = useNavigation();
+
   const {
     id,
     text,
@@ -12,10 +19,17 @@ export default function QuoteItem({ route }) {
     category,
     user,
   } = route.params;
+
+  const handlePressDelete = () => {
+    console.log(id);
+    deleteQuoteById(id);
+    navigation.navigate("Homepage", { refresh: true });
+  };
+
   return (
-    <View style={styles.itemContainer}>
+    <ScrollView style={styles.itemContainer}>
       <Text style={styles.header}>Qoutes</Text>
-      <ScrollView>
+      <View>
         <Text style={styles.items_header}>Quote text</Text>
         <Text style={styles.items}>{text}</Text>
         <Text style={styles.items_header}>Author:</Text>
@@ -30,8 +44,14 @@ export default function QuoteItem({ route }) {
         <Text style={styles.items}>{category}</Text>
         <Text style={styles.items_header}>User</Text>
         <Text style={styles.items}>{user}</Text>
-      </ScrollView>
-    </View>
+      </View>
+
+      <View style={styles.deleteButton}>
+        <TouchableOpacity onPress={handlePressDelete}>
+          <Text style={styles.deleteText}>Delete</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 }
 
@@ -55,5 +75,19 @@ const styles = StyleSheet.create({
     textAlign: "justify",
     borderBottomColor: "grey",
     borderBottomWidth: 1,
+  },
+  deleteButton: {
+    marginTop: 30,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  deleteText: {
+    backgroundColor: "#e03131",
+    borderWidth: 0.5,
+    borderRadius: 10,
+    padding: 10,
+    borderColor: "#e03131",
+    color: "#f8f9fa",
+    fontWeight: "bold",
   },
 });

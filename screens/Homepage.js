@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -15,19 +15,30 @@ import QuoteItem from "./quoteItem";
 import { UserProvider } from "../Contexts/UserContext";
 import { useUserContext } from "../Contexts/UserContext";
 import Login from "./login";
+import { getQoutesByUsername } from "../api/api";
 
 export default function Homepage({ route }) {
   const [selected, setSelected] = useState("");
   const [props, setProps] = useState({});
-
+  const isFocused = useIsFocused();
   const { user } = useUserContext();
+  const quotes = route.params?.quotes;
+  const [newQuote, setNewQuotes] = useState("");
+
+  useEffect(() => {
+    if (isFocused && route.params?.refresh) {
+      getQoutesByUsername(user.username).then((result) => {
+        setNewQuotes(result);
+      });
+
+      route.params.refresh = false;
+    }
+  }, [isFocused, route.params]);
 
   const navigation = useNavigation();
   const updateProps = (newProps) => {
     setProps(newProps);
   };
-
-  const quotes = route.params?.quotes;
 
   const data = [
     { key: "1", value: "Personal" },
