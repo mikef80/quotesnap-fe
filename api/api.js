@@ -41,7 +41,6 @@ export const postNewQuote = async (quote) => {
       quoteCategory,
       quoteUser,
     });
-    console.log(postedQuote);
     return postedQuote;
   } catch (error) {
     console.log(error);
@@ -49,14 +48,20 @@ export const postNewQuote = async (quote) => {
 };
 
 export const getUserByUsername = (username, password) => {
-  return baseUrl
-    .get(`/users/${username}`, { params: { password: password } })
-    .then(({ data: { user } }) => user);
+  return baseUrl.get(`/users/${username}`, { params: { password: password } }).then(({ data: { user } }) => user);
+
   // .catch((err) => {
   //   console.log(err);
   // });
 };
 
+export const postCategory = (category) => {
+  return baseUrl.post(`/categories`, { categoryName: category }).then(({ data }) => {
+    return data.category;
+  });
+
+
 export const postNewUser = (userObject) => {
   return baseUrl.post("/users", userObject).then(({ data: { user } }) => user);
+
 };

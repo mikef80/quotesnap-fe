@@ -1,17 +1,9 @@
-import {
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  Dimensions,
-} from "react-native";
+import { Button, StyleSheet, Text, View, Image, ScrollView, Dimensions } from "react-native";
 import Navigation from "../components/Navigation";
 import * as ImagePicker from "expo-image-picker";
 import MlkitOcr from "react-native-mlkit-ocr";
 import { useEffect, useState } from "react";
-import { postNewQuote } from "../api/api";
+import { postCategory, postNewQuote } from "../api/api";
 import { useUserContext } from "../Contexts/UserContext";
 import Login from "./login";
 import { TextInput } from "react-native-gesture-handler";
@@ -104,16 +96,20 @@ export default function Scan() {
       quoteCategory: category || "Misc.",
       quoteUser: user?.username || "Hello",
     };
-    postNewQuote(quoteToSave).then((returnedQuote) => {
-      console.log("Quote save");
-      setText(null);
-      setImage(null);
-      setAuthor("");
-      setOrigin("");
-      setIsPrivate(false);
-      setCategory("");
-      setIsLoading(false);
-    });
+    postNewQuote(quoteToSave)
+      .then((returnedQuote) => {
+        console.log("Quote save");
+        return postCategory(category);
+      })
+      .then(() => {
+        setText(null);
+        setImage(null);
+        setAuthor("");
+        setOrigin("");
+        setIsPrivate(false);
+        setCategory("");
+        setIsLoading(false);
+      });
   };
 
   function handleAuthor(text) {
@@ -137,7 +133,7 @@ export default function Scan() {
   } */
 
   if (isLoading) {
-    return <LoadingSpinner  />;
+    return <LoadingSpinner />;
   }
 
   return (
@@ -163,18 +159,10 @@ export default function Scan() {
 
             <View style={styles.form}>
               <Text>Author</Text>
-              <TextInput
-                style={styles.InputBox}
-                value={author}
-                onChangeText={handleAuthor}
-              />
+              <TextInput style={styles.InputBox} value={author} onChangeText={handleAuthor} />
 
               <Text>Origin</Text>
-              <TextInput
-                style={styles.InputBox}
-                value={origin}
-                onChangeText={handleOrigin}
-              />
+              <TextInput style={styles.InputBox} value={origin} onChangeText={handleOrigin} />
 
               <Text>Private?</Text>
               <Checkbox
@@ -186,11 +174,7 @@ export default function Scan() {
                 }}
               />
               <Text>Category</Text>
-              <TextInput
-                style={styles.InputBox}
-                value={category}
-                onChangeText={handleCategory}
-              />
+              <TextInput style={styles.InputBox} value={category} onChangeText={handleCategory} />
             </View>
           </>
         )}
@@ -202,20 +186,13 @@ export default function Scan() {
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
-            }}>
+            }}
+          >
             <View>
-              <Button
-                color={"#5DB075"}
-                title='Pick Image'
-                onPress={pickImage}
-              />
+              <Button color={"#5DB075"} title="Pick Image" onPress={pickImage} />
             </View>
             <View style={{ paddingLeft: 20 }}>
-              <Button
-                color={"#5DB075"}
-                title='Scan quote'
-                onPress={openCamera}
-              />
+              <Button color={"#5DB075"} title="Scan quote" onPress={openCamera} />
             </View>
           </View>
         )}
@@ -226,23 +203,16 @@ export default function Scan() {
               flexDirection: "row",
               justifyContent: "space-around",
               alignItems: "center",
-            }}>
+            }}
+          >
             <View>
-              <Button
-                color={"#5DB075"}
-                title='Pick Image'
-                onPress={pickImage}
-              />
+              <Button color={"#5DB075"} title="Pick Image" onPress={pickImage} />
             </View>
             <View style={{ paddingLeft: 20 }}>
-              <Button
-                color={"#5DB075"}
-                title='Scan quote'
-                onPress={openCamera}
-              />
+              <Button color={"#5DB075"} title="Scan quote" onPress={openCamera} />
             </View>
             <View style={{ paddingLeft: 20 }}>
-              <Button color={"#5DB075"} title='Save Scan' onPress={saveScan} />
+              <Button color={"#5DB075"} title="Save Scan" onPress={saveScan} />
             </View>
           </View>
         )}

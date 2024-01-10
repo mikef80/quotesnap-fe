@@ -1,12 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  FlatList,
-  SafeAreaView,
-} from "react-native";
+import { View, Text, TextInput, StyleSheet, FlatList, SafeAreaView } from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useState, useEffect } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -27,7 +20,8 @@ export default function Homepage({ route }) {
     setProps(newProps);
   };
 
-  const quotes = route.params?.quotes;
+  const quotes = route.params?.quotes.filter((quote) => quote.quoteOrigin !== "ghost");
+  // console.log(quotes);
 
   const data = [
     { key: "1", value: "Personal" },
@@ -72,11 +66,7 @@ export default function Homepage({ route }) {
       <Text style={styles.header}>Quotes</Text>
       <TextInput style={styles.searchQuotes} placeholder="Search quotes.." />
       <View style={styles.selectList}>
-        <SelectList
-          setSelected={(val) => setSelected(val)}
-          data={data}
-          save="value"
-        />
+        <SelectList setSelected={(val) => setSelected(val)} data={data} save="value" />
       </View>
 
       {quotes?.length ? (
