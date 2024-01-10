@@ -1,9 +1,7 @@
 import { StyleSheet, TouchableOpacity, View, Text, Button, Dimensions, Keyboard } from "react-native";
 import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { SelectList } from "react-native-dropdown-select-list";
 import { useEffect, useState } from "react";
-import { getCategories, getQoutesByUsername, postCategory, postNewQuote } from "../api/api";
+import { getQoutesByUsername, postNewQuote } from "../api/api";
 
 import { useUserContext } from "../Contexts/UserContext";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -42,7 +40,6 @@ export default function Categories() {
 
   const handleTextChange = (input) => {
     setNewCategory(input);
-    console.log(newCategory);
   };
 
   useEffect(() => {
@@ -60,8 +57,6 @@ export default function Categories() {
 
   const handleNewCategoryPress = async () => {
     setModalVisible(true);
-    const newCategory = "Powerful";
-    await postCategory(newCategory);
   };
 
   const toggleModal = () => {
@@ -85,19 +80,19 @@ export default function Categories() {
     };
   }, []);
 
-  // if (!user) {
-  //   return (
-  //     <View>
-  //       <Login />
-  //     </View>
-  //   );
-  // }
+  if (!user) {
+    return (
+      <View>
+        <Login />
+      </View>
+    );
+  }
 
-  // if (isLoading) {
-  //   if (isLoading) {
-  //     return <LoadingSpinner />;
-  //   }
-  // }
+  if (isLoading) {
+    if (isLoading) {
+      return <LoadingSpinner />;
+    }
+  }
 
   function handleCategoryPick(cat) {
     const filteredQuotes = quotes.filter((quote) => quote.quoteOrigin !== "ghost");
@@ -114,7 +109,6 @@ export default function Categories() {
     <View style={styles.categoriesContainer}>
       {modalVisible ? (
         <View>
-
           <Modal
             isVisible={modalVisible}
             style={{
@@ -163,13 +157,6 @@ export default function Categories() {
           </Modal>
         </View>
       ) : null}
-      {/* <View style={styles.selectList}>
-        <SelectList
-          setSelected={(val) => setSelected(val)}
-          data={data}
-          save="value"
-        />
-      </View> */}
       <TouchableOpacity
         onPress={handleNewCategoryPress}
         style={{
