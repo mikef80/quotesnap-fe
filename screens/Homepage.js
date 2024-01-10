@@ -20,7 +20,7 @@ export default function Homepage({ route }) {
     setProps(newProps);
   };
 
-  const quotes = route.params?.quotes;
+  const quotes = route.params?.quotes.filter((quote) => quote.quoteOrigin !== "ghost");
   // console.log(quotes);
 
   const data = [
