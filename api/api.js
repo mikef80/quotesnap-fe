@@ -60,7 +60,9 @@ export const deleteQuoteById = async (id) => {
   return await baseUrl.delete(`/quotes/${id}`);
 };
 export const postCategory = (category) => {
-  return baseUrl.post(`/categories`,{categoryName : category}).then(({data}) => {
-   return data.category
-  })
-}
+  return baseUrl
+    .post(`/categories`, { categoryName: category })
+    .then(({ data }) => {
+      return data.category;
+    });
+};

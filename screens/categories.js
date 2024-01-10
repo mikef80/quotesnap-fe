@@ -1,14 +1,26 @@
-import { StyleSheet, TouchableOpacity, View, Text, Button, Dimensions } from "react-native";
-import { FlatList, ScrollView } from "react-native-gesture-handler";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Text,
+  Button,
+  Dimensions,
+} from "react-native";
+import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useEffect, useState } from "react";
-import { getCategories, getQoutesByUsername, postCategory } from "../api/api";
+import {
+  getCategories,
+  getQoutesByUsername,
+  postCategory,
+  postNewQuote,
+} from "../api/api";
 
 import { useUserContext } from "../Contexts/UserContext";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Login from "./login";
-// import Modal from "react-native-modal";
+import Modal from "react-native-modal";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 
 export default function Categories() {
@@ -18,37 +30,67 @@ export default function Categories() {
   const [quotes, setQuotes] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useUserContext();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [newCategory, setNewCategory] = useState("");
+  const [refresh, setRefresh] = useState(false);
+
+  const addCategory = async () => {
+    const ghostQuote = {
+      quoteText: "ghost",
+      quoteAuthor: "ghost",
+      quoteOrigin: "ghost",
+      quoteLocation: "ghost",
+      quoteImage: "ghost",
+      quoteIsPrivate: true,
+      quoteCategory: newCategory,
+      quoteUser: user.username,
+    };
+
+    await postNewQuote(ghostQuote);
+    setModalVisible(!modalVisible);
+    setNewCategory("");
+    setRefresh(!refresh);
+  };
+
+  const handleTextChange = (input) => {
+    setNewCategory(input);
+    console.log(newCategory);
+  };
 
   useEffect(() => {
     if (isFocused) {
       setIsLoading(true);
       if (user) {
         getQoutesByUsername(user.username).then((quotes) => {
-          setCategories(["All", ...new Set(quotes.map((quote) => quote.quoteCategory))]);
+          setCategories([
+            "All",
+            ...new Set(quotes.map((quote) => quote.quoteCategory)),
+          ]);
           setQuotes(quotes);
           setIsLoading(false);
         });
       }
     }
-  }, [user, isFocused]);
+  }, [user, isFocused, refresh]);
 
-  // const handleNewCategoryPress = async () => {
-  //   setModalVisible(true);
-  //   const newCategory = "Powerful";
-  //   await postCategory(newCategory);
-  // };
+  const handleNewCategoryPress = async () => {
+    setModalVisible(true);
+    const newCategory = "Powerful";
+    await postCategory(newCategory);
+  };
 
-  // const toggleModal = () => {
-  //   setModalVisible(!modalVisible);
-  // };
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+    setNewCategory("");
+  };
 
-  if (!user) {
-    return (
-      <View>
-        <Login />
-      </View>
-    );
-  }
+  // if (!user) {
+  //   return (
+  //     <View>
+  //       <Login />
+  //     </View>
+  //   );
+  // }
 
   if (isLoading) {
     if (isLoading) {
@@ -68,25 +110,50 @@ export default function Categories() {
 
   return (
     <View style={styles.categoriesContainer}>
-      {/* {modalVisible ? (
+      {modalVisible ? (
         <View style={{}}>
           <Button title="Show modal" onPress={toggleModal} />
 
           <Modal
             isVisible={modalVisible}
-            style={{ backgroundColor: "gray", borderRadius: 20, marginTop: 250, marginBottom: 250 }}
+            style={{
+              backgroundColor: "gray",
+              borderRadius: 20,
+              marginTop: 250,
+              marginBottom: 250,
+            }}
           >
             <View style={{ flex: 1, padding: 20 }}>
-              <Text>Hello!</Text>
-
-              <View style={{ flexDirection: "row", position: "relative", bottom: 0 }}>
-                <Button style={{ margin: 200 }} title="Hide modal" onPress={toggleModal} />
-                <Button style={{ margin: 20 }} title="Hide modal" onPress={toggleModal} />
+              <Text>New Cateogry </Text>
+              <Text>Enter a name for this category. </Text>
+              <TextInput
+                value={newCategory}
+                onChangeText={handleTextChange}
+                style={{ borderWidth: 1, borderColor: "#FFFFFF" }}
+                // autoCorrect={true}
+              ></TextInput>
+              <View
+                style={{
+                  flexDirection: "row",
+                  position: "relative",
+                  bottom: 0,
+                }}
+              >
+                <Button
+                  style={{ margin: 200 }}
+                  title="Cancel"
+                  onPress={toggleModal}
+                />
+                <Button
+                  style={{ margin: 20 }}
+                  title="Add"
+                  onPress={addCategory}
+                />
               </View>
             </View>
           </Modal>
         </View>
-      ) : null} */}
+      ) : null}
       {/* <View style={styles.selectList}>
         <SelectList
           setSelected={(val) => setSelected(val)}
@@ -94,9 +161,12 @@ export default function Categories() {
           save="value"
         />
       </View> */}
-      {/* <TouchableOpacity onPress={handleNewCategoryPress} style={{ position: "absolute", top: 0, right: 0 }}>
+      <TouchableOpacity
+        onPress={handleNewCategoryPress}
+        style={{ position: "absolute", top: 0, right: 0 }}
+      >
         <Text>+ New Category</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
 
       <Text style={styles.header}>Categories</Text>
 
