@@ -28,21 +28,21 @@ export default function QuoteItem({ route }) {
 
   return (
     <ScrollView style={styles.itemContainer}>
-      <Text style={styles.header}>Qoutes</Text>
+      <Text style={styles.header}>Quotes</Text>
       <View>
-        <Text style={styles.items_header}>Quote text</Text>
+        <Text style={styles.items_header}>Quote text:</Text>
         <Text style={styles.items}>{text}</Text>
         <Text style={styles.items_header}>Author:</Text>
         <Text style={styles.items}>{author}</Text>
         <Text style={styles.items_header}>Origin:</Text>
         <Text style={styles.items}>{origin}</Text>
-        <Text style={styles.items_header}>Is private?</Text>
+        <Text style={styles.items_header}>Visibility:</Text>
         <Text style={styles.items}>
-          Visibility: {isPrivate ? "Private" : "Public"}
+          {isPrivate ? "Private" : "Public"}
         </Text>
-        <Text style={styles.items_header}>Category</Text>
+        <Text style={styles.items_header}>Category:</Text>
         <Text style={styles.items}>{category}</Text>
-        <Text style={styles.items_header}>User</Text>
+        <Text style={styles.items_header}>User:</Text>
         <Text style={styles.items}>{user}</Text>
       </View>
 
