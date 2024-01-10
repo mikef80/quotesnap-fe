@@ -38,7 +38,7 @@ export default function Login() {
         const quotes = (await getQoutesByUsername(username)) || [];
         await setUserValue(await getUserByUsername(username, password));
 
-        navigation.navigate("Homepage", { quotes });
+        navigation.navigate("Homepage");
       } catch ({ response }) {
         Alert.alert("Error", response.data.msg);
       } finally {
@@ -77,7 +77,7 @@ export default function Login() {
         <View style={styles.login_input}>
           <TextInput
             style={styles.textUsername}
-            placeholder='Username'
+            placeholder="Username"
             onChangeText={handleUsernameTextChange}
             value={username}
           />
@@ -85,7 +85,7 @@ export default function Login() {
             style={styles.textUsername}
             secureTextEntry={true}
             onChangeText={handlePasswordTextChange}
-            placeholder='Password'
+            placeholder="Password"
             value={password}
           />
           <View style={styles.login_button}>

@@ -16,24 +16,33 @@ import { UserProvider } from "../Contexts/UserContext";
 import { useUserContext } from "../Contexts/UserContext";
 import Login from "./login";
 import { getQoutesByUsername } from "../api/api";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function Homepage({ route }) {
   const [selected, setSelected] = useState("");
   const [props, setProps] = useState({});
   const isFocused = useIsFocused();
   const { user } = useUserContext();
-  const quotes = route.params?.quotes;
-  const [newQuote, setNewQuotes] = useState("");
+  const [quotes, setQuotes] = useState(route.params?.quotes);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // useEffect(() => {
+  //   if (isFocused && route.params?.refresh) {
+  //     getQoutesByUsername(user.username).then((result) => {
+  //       setNewQuotes(result);
+  //     });
+
+  //     route.params.refresh = false;
+  //   }
+  // }, [isFocused, route.params]);
 
   useEffect(() => {
-    if (isFocused && route.params?.refresh) {
-      getQoutesByUsername(user.username).then((result) => {
-        setNewQuotes(result);
-      });
-
-      route.params.refresh = false;
-    }
-  }, [isFocused, route.params]);
+    setIsLoading(true);
+    getQoutesByUsername(user.username).then((quotes) => {
+      setQuotes(quotes);
+      setIsLoading(false);
+    });
+  }, []);
 
   const navigation = useNavigation();
   const updateProps = (newProps) => {
@@ -89,7 +98,11 @@ export default function Homepage({ route }) {
           save="value"
         />
       </View>
-
+      {isLoading && (
+        <View>
+          <LoadingSpinner />
+        </View>
+      )}
       {quotes?.length ? (
         <FlatList
           data={quotes}
