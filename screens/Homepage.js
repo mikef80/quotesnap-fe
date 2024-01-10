@@ -21,28 +21,22 @@ import LoadingSpinner from "../components/LoadingSpinner";
 export default function Homepage({ route }) {
   const [selected, setSelected] = useState("");
   const [props, setProps] = useState({});
-  const isFocused = useIsFocused();
   const { user } = useUserContext();
   const [quotes, setQuotes] = useState(route.params?.quotes);
   const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   if (isFocused && route.params?.refresh) {
-  //     getQoutesByUsername(user.username).then((result) => {
-  //       setNewQuotes(result);
-  //     });
-
-  //     route.params.refresh = false;
-  //   }
-  // }, [isFocused, route.params]);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
-    setIsLoading(true);
-    getQoutesByUsername(user.username).then((quotes) => {
-      setQuotes(quotes);
-      setIsLoading(false);
-    });
-  }, []);
+    console.log(isFocused);
+    if (isFocused) {
+      setIsLoading(true);
+      getQoutesByUsername(user.username).then((quotes) => {
+        setQuotes(quotes);
+        setIsLoading(false);
+      });
+    }
+  }, [isFocused]);
 
   const navigation = useNavigation();
   const updateProps = (newProps) => {
