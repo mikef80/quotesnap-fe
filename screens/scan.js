@@ -151,6 +151,7 @@ export default function Scan() {
                 <Text>Quote Text</Text>
               </View>
               <TextInput
+                autoCorrect={true}
                 multiline
                 style={styles.Text}
                 value={text}
