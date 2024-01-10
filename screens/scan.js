@@ -1,13 +1,12 @@
 import { Button, StyleSheet, Text, View, Image, ScrollView, Dimensions } from "react-native";
-import Navigation from "../components/Navigation";
 import * as ImagePicker from "expo-image-picker";
 import MlkitOcr from "react-native-mlkit-ocr";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { postCategory, postNewQuote } from "../api/api";
 import { useUserContext } from "../Contexts/UserContext";
 import Login from "./login";
 import { TextInput } from "react-native-gesture-handler";
-import { Checkbox, RadioButton, ActivityIndicator } from "react-native-paper";
+import { Checkbox } from "react-native-paper";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function Scan() {
@@ -19,7 +18,6 @@ export default function Scan() {
   const [category, setCategory] = useState("");
   const { user } = useUserContext();
   const height = Dimensions.get("window").height;
-  const width = Dimensions.get("window").width;
   const [isLoading, setIsLoading] = useState(false);
 
   const openCamera = async () => {
@@ -33,7 +31,6 @@ export default function Scan() {
     }
 
     const result = await ImagePicker.launchCameraAsync({
-      // quality: 1,
       allowsEditing: true,
     });
 
@@ -76,16 +73,13 @@ export default function Scan() {
 
     if (resultFromUri?.length > 0) {
       let _ = resultFromUri.map((line) => line.text);
-      _ = JSON.stringify(_.join(" ").replaceAll("\n", " "));
-      _ = _.replaceAll("\\", " ");
-      setText(_);
+      setText(JSON.stringify(_.join(" ").replaceAll("\n", " ")).replaceAll("\\", " "));
     }
     setIsLoading(false);
   };
 
   const saveScan = () => {
     setIsLoading(true);
-    console.log("saving quote...");
     const quoteToSave = {
       quoteText: text,
       quoteAuthor: author || "",
@@ -98,10 +92,10 @@ export default function Scan() {
     };
     postNewQuote(quoteToSave)
       .then((returnedQuote) => {
-        console.log("Quote save");
         return postCategory(category);
       })
-      .then(() => {
+      .catch(() => {})
+      .finally(() => {
         setText(null);
         setImage(null);
         setAuthor("");
@@ -124,13 +118,13 @@ export default function Scan() {
     setCategory(text);
   }
 
-  /* if (!user) {
+  if (!user) {
     return (
       <View>
         <Login />
       </View>
     );
-  } */
+  }
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -229,7 +223,6 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   Image: {
-    // width: window.width,
     height: 300,
     objectFit: "contain",
     padding: 20,
