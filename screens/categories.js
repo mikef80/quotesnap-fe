@@ -61,6 +61,7 @@ export default function Categories() {
     }
   }, [user, isFocused, refresh]);
 
+
   const handleNewCategoryPress = async () => {
     setModalVisible(true);
   };
@@ -69,6 +70,7 @@ export default function Categories() {
     setModalVisible(!modalVisible);
     setNewCategory("");
   };
+
 
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
@@ -102,11 +104,13 @@ export default function Categories() {
 
   function handleCategoryPick(cat) {
     const filteredQuotes = quotes.filter((quote) => quote.quoteOrigin !== "ghost");
+
     if (cat === "All") {
       navigation.navigate("Homepage", { quotes: filteredQuotes });
     } else {
       navigation.navigate("Homepage", {
         quotes: filteredQuotes.filter((quote) => quote.quoteCategory === cat),
+
       });
     }
   }

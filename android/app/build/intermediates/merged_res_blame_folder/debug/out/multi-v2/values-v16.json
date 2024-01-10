@@ -1,0 +1,38 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.anonymous.quotesnapfe.app-mergeDebugResources-53:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "/Users/mike/.gradle/caches/transforms-3/8fc775a10259692585e5f093b80f9883/transformed/appcompat-1.6.1/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "/Users/mike/.gradle/caches/transforms-3/1d930b3380c76b7657baee5387c2188a/transformed/core-1.9.0/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                }
+            ]
+        }
+    ]
+}
