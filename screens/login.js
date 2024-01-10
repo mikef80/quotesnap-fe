@@ -1,10 +1,19 @@
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { Button, TextInput, View, Text, StyleSheet, Alert } from "react-native";
+import {
+  Button,
+  TextInput,
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  Image,
+} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { getQoutesByUsername, getUserByUsername } from "../api/api";
 import { useUserContext } from "../Contexts/UserContext";
 import LoadingSpinner from "../components/LoadingSpinner";
+import Logo from "../assets/QuoteSnap-logos_transparent.png";
 
 export default function Login() {
   const navigation = useNavigation();
@@ -56,7 +65,7 @@ export default function Login() {
   return (
     <View>
       <View style={styles.login_container}>
-        <Text style={styles.header}>QuoteSnap</Text>
+        <Image source={Logo} style={{height:200, width:200, alignSelf:'center'}} />
         <Text style={styles.dailyQuote}>
           "Beware of bugs..." - "The CodeFathers"
         </Text>
