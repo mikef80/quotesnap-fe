@@ -8,6 +8,7 @@ import {
   Alert,
   Image,
   TouchableHighlight,
+  TouchableOpacity,
 } from "react-native";
 import { postNewUser } from "../api/api";
 import { useUserContext } from "../Contexts/UserContext";
@@ -26,6 +27,7 @@ export default function Signup() {
   const [selectedAvatar, setSelectedAvatar] = useState(
     "../assets/avatar1.jpeg"
   );
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const { user, setUserValue } = useUserContext();
 
@@ -70,6 +72,7 @@ export default function Signup() {
         .catch(({ response }) => {
           setIsloading(false);
           setPassword("");
+          setPasswordConfirmation("");
           if (response.data.msg === "User already exists!") {
             Alert.alert("Error", response.data.msg);
             setUsername("");
@@ -94,6 +97,19 @@ export default function Signup() {
     setPasswordLength(password.length);
   }, [password]);
 
+  useEffect(() => {
+    if (
+      passwordLength < 8 ||
+      lastname.length <= 0 ||
+      firstname.length <= 0 ||
+      username.length <= 0
+    ) {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
+  }, [passwordLength, lastname, firstname, username]);
+
   return (
     <View>
       <View>
@@ -107,7 +123,7 @@ export default function Signup() {
         {!isLoading && (
           <View style={styles.signup_input}>
             <View style={styles.contents}>
-              <Text>Select your avatar</Text>
+              <Text style={styles.Label}>Select your avatar:</Text>
               <View style={{ flexDirection: "row" }}>
                 <TouchableHighlight
                   onPress={() => setSelectedAvatar("../assets/avatar1.jpeg")}>
@@ -152,24 +168,29 @@ export default function Signup() {
                   />
                 </TouchableHighlight>
               </View>
+              <Text style={styles.Label}>Enter Firstname:</Text>
               <TextInput
                 onChangeText={handleFirstnameChange}
                 value={firstname}
                 style={styles.textbox}
-                placeholder='firstname'
+                placeholder='Firstname'
+                label={"name"}
               />
+              <Text style={styles.Label}>Enter Surname:</Text>
               <TextInput
                 onChangeText={handleLastnameChange}
                 value={lastname}
                 style={styles.textbox}
-                placeholder='lastname'
+                placeholder='Surname'
               />
+              <Text style={styles.Label}>Enter Username:</Text>
               <TextInput
                 onChangeText={handleUsernameChange}
                 value={username}
                 style={styles.textbox}
                 placeholder='Username'
               />
+              <Text style={styles.Label}>Enter Password:</Text>
               <TextInput
                 onChangeText={handlePasswordChange}
                 value={password}
@@ -182,23 +203,34 @@ export default function Signup() {
                   Password characters remaining: {8 - passwordLength}
                 </Text>
               )}
+              <Text style={styles.Label}>Confirm Password:</Text>
               <TextInput
                 onChangeText={handlePasswordConfirmationChange}
                 value={passwordConfirmation}
                 style={styles.textbox}
                 secureTextEntry={true}
-                placeholder='Confirm password'
+                placeholder='Password'
               />
-              <Button
-                onPress={handleSubmit}
-                title='Sign Up'
-                disabled={
-                  passwordLength < 8 ||
-                  lastname.length <= 0 ||
-                  firstname.length <= 0 ||
-                  username.length <= 0
-                }
-              />
+              <View style={styles.signupView}>
+                <TouchableOpacity
+                  style={
+                    isDisabled
+                      ? styles.signupBtnDisabled
+                      : styles.signupBtnEnabled
+                  }
+                  onPress={handleSubmit}
+                  title='Sign Up'
+                  disabled={isDisabled}>
+                  <Text
+                    style={
+                      isDisabled
+                        ? styles.signupTextDisabled
+                        : styles.signupTextEnabled
+                    }>
+                    Sign Up
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         )}
@@ -214,20 +246,10 @@ const styles = StyleSheet.create({
   },
 
   signup_input: {
-    borderColor: "#000000",
-    borderWidth: 2,
-    borderRadius: 10,
-    margin: 50,
+    marginHorizontal: 50,
     padding: 20,
   },
-  textbox: {
-    borderColor: "grey",
-    borderWidth: 0.5,
-    width: "auto",
-    margin: 5,
-    padding: 3,
-    fontSize: 12,
-  },
+
   PasswordHint: {
     fontSize: 12,
     margin: 5,
@@ -242,5 +264,51 @@ const styles = StyleSheet.create({
   selected: {
     width: 100,
     height: 100,
+  },
+  Label: {
+    marginLeft: 5,
+    fontSize: 13,
+    marginBottom: 4,
+    marginTop: 9,
+  },
+  textbox: {
+    backgroundColor: "#E8E8E8",
+    borderColor: "#E8E8E8",
+    borderWidth: 0.5,
+    borderRadius: 5,
+    fontSize: 16,
+    width: 275,
+    padding: 5,
+  },
+  signupBtnEnabled: {
+    width: 200,
+    backgroundColor: "#5DB075",
+    padding: 20,
+    borderRadius: 30,
+  },
+  signupBtnDisabled: {
+    width: 200,
+    backgroundColor: "#cdcdcd",
+    padding: 20,
+    borderRadius: 30,
+  },
+  signupTextEnabled: {
+    color: "white",
+    fontSize: 16,
+    textAlign: "center",
+    fontWeight: "700",
+  },
+  signupTextDisabled: {
+    color: "#efefef",
+    fontSize: 16,
+    textAlign: "center",
+    fontWeight: "700",
+  },
+  contents: {
+    flexDirection: "column",
+  },
+  signupView: {
+    alignItems: "center",
+    marginTop: 15,
   },
 });
