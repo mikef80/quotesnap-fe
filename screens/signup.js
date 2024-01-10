@@ -70,6 +70,7 @@ export default function Signup() {
         .catch(({ response }) => {
           setIsloading(false);
           setPassword("");
+          setPasswordConfirmation("");
           if (response.data.msg === "User already exists!") {
             Alert.alert("Error", response.data.msg);
             setUsername("");
