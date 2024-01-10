@@ -47,9 +47,15 @@ export default function Categories() {
       setIsLoading(true);
       if (user) {
         getQoutesByUsername(user.username).then((quotes) => {
-          setCategories(["All", ...new Set(quotes.map((quote) => quote.quoteCategory))]);
-          setQuotes(quotes);
-          setIsLoading(false);
+          if (quotes) {
+            setCategories(["All", ...new Set(quotes.map((quote) => quote.quoteCategory))]);
+            setQuotes(quotes);
+            setIsLoading(false);
+          } else {
+            setQuotes([]);
+            setCategories([]);
+            setIsLoading(false);
+          }
         });
       }
     }
