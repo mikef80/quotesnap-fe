@@ -102,11 +102,14 @@ export default function Categories() {
 
   function handleCategoryPick(cat) {
     const filteredQuotes = quotes.filter((quote) => quote.quoteOrigin !== "ghost");
+
     if (cat === "All") {
       navigation.navigate("Homepage", { quotes: filteredQuotes });
     } else {
+      const filteredQuotes2 = filteredQuotes.filter((quote) => quote.quoteCategory === cat)
+      console.log(filteredQuotes2, '<--***');
       navigation.navigate("Homepage", {
-        quotes: filteredQuotes.filter((quote) => quote.quoteCategory === cat),
+        quotes:filteredQuotes2 ,
       });
     }
   }

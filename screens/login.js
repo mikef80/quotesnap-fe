@@ -49,22 +49,6 @@ export default function Login() {
     setIsLoading(false);
   };
 
-  // const handlePressCategory = () => {
-  //   navigation.navigate("Categories");
-  // };
-
-  // const handlePressProfile = () => {
-  //   navigation.navigate("Profile");
-  // };
-
-  // const handlePressScanScreen = () => {
-  //   navigation.navigate("Scan");
-  // };
-
-  // const handlePressNavigation = () => {
-  //   navigation.navigate("Navigation");
-  // };
-
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -73,11 +57,13 @@ export default function Login() {
     <View>
       <View style={styles.login_container}>
         <Text style={styles.header}>QuoteSnap</Text>
-        <Text style={styles.dailyQuote}>Quote of the Day</Text>
+        <Text style={styles.dailyQuote}>
+          "Beware of bugs..." - "The CodeFathers"
+        </Text>
         <View style={styles.login_input}>
           <TextInput
             style={styles.textUsername}
-            placeholder="Username"
+            placeholder='Username'
             onChangeText={handleUsernameTextChange}
             value={username}
           />
@@ -85,16 +71,15 @@ export default function Login() {
             style={styles.textUsername}
             secureTextEntry={true}
             onChangeText={handlePasswordTextChange}
-            placeholder="Password"
+            placeholder='Password'
             value={password}
           />
           <View style={styles.login_button}>
             <TouchableOpacity
-              color="#5DB075"
-              height="100"
-              title="Log in"
-              onPress={handlePressLogin}
-            >
+              color='#5DB075'
+              height='100'
+              title='Log in'
+              onPress={handlePressLogin}>
               <Text style={styles.btn_text}>Log In</Text>
             </TouchableOpacity>
           </View>

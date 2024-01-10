@@ -1,18 +1,9 @@
 import { useIsFocused, useNavigation } from "@react-navigation/native";
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  FlatList,
-  SafeAreaView,
-} from "react-native";
+import { View, Text, TextInput, StyleSheet, FlatList } from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useState, useEffect } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import Navigation from "../components/Navigation";
-import QuoteItem from "./quoteItem";
-import { UserProvider } from "../Contexts/UserContext";
+
 import { useUserContext } from "../Contexts/UserContext";
 import Login from "./login";
 import { getQoutesByUsername } from "../api/api";
@@ -28,13 +19,17 @@ export default function Homepage({ route }) {
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    console.log(isFocused);
-    if (isFocused) {
-      setIsLoading(true);
-      getQoutesByUsername(user.username).then((quotes) => {
-        setQuotes(quotes);
-        setIsLoading(false);
-      });
+    if (!route.params?.quotes) {
+      if (isFocused) {
+        setIsLoading(true);
+        getQoutesByUsername(user.username).then((quotes) => {
+          setQuotes(quotes);
+          setIsLoading(false);
+        });
+      }
+    } else {
+      setQuotes(route.params?.quotes);
+      setIsLoading(false);
     }
   }, [isFocused]);
 
@@ -42,9 +37,6 @@ export default function Homepage({ route }) {
   const updateProps = (newProps) => {
     setProps(newProps);
   };
-
-  /* const quotes = route.params?.quotes.filter((quote) => quote.quoteOrigin !== "ghost"); */
-  // console.log(quotes);
 
   const data = [
     { key: "1", value: "Personal" },
@@ -87,10 +79,6 @@ export default function Homepage({ route }) {
   return (
     <View style={styles.homepageContainer}>
       <Text style={styles.header}>Quotes</Text>
-      <TextInput style={styles.searchQuotes} placeholder="Search quotes.." />
-      <View style={styles.selectList}>
-        <SelectList setSelected={(val) => setSelected(val)} data={data} save="value" />
-      </View>
       {isLoading && (
         <View>
           <LoadingSpinner />
@@ -114,8 +102,7 @@ export default function Homepage({ route }) {
                     item.quoteIsPrivate,
                     item.quoteCategory,
                     item.quoteUser
-                  )}
-                >
+                  )}>
                   <Text style={styles.listText} key={item.quoteId}>
                     {item.quoteText}
                   </Text>
