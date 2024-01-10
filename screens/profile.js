@@ -4,6 +4,9 @@ import { useUserContext } from "../Contexts/UserContext";
 import { useNavigation } from "@react-navigation/native";
 import Login from "./login";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import avatar1 from "../assets/avatar1.jpeg"
+import avatar2 from "../assets/avatar2.jpeg"
+import avatar3 from "../assets/avatar3.png"
 
 export default function Profile() {
   const navigation = useNavigation();
@@ -22,7 +25,6 @@ export default function Profile() {
       </View>
     );
   }
-
   return (
     <View style={styles.profile}>
       <View style={styles.container}>
@@ -31,9 +33,8 @@ export default function Profile() {
         </View>
         <View style={styles.user}>
           <Image
-            resizeMode="contain"
             style={styles.avatar}
-            source={require("../assets/avatar.png")}
+            source={user.avatar === "../assets/avatar1.jpeg" ? avatar1 : user.avatar  === "../assets/avatar2.jpeg" ? avatar2 : avatar3}
           />
         </View>
       </View>
@@ -94,8 +95,8 @@ const styles = StyleSheet.create({
     borderRadius: 120,
     width: 120,
     height: 120,
-    borderWidth: 5,
-    borderColor: "white",
+    borderWidth: 1,
+    borderColor: "white" 
   },
   logout: {
     flex: 1,
